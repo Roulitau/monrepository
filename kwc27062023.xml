@@ -1,0 +1,7046 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2021.1 (Build 215U)" ts="2023-06-27 11:24:28">
+<Class name="classeJulien.couleurTitrePG">
+<Super>%Persistent</Super>
+<TimeChanged>66627,56816.461042</TimeChanged>
+<TimeCreated>66627,55226.448796</TimeCreated>
+
+<Property name="couleurPG">
+<Type>%String</Type>
+</Property>
+
+<Property name="TitrePG">
+<Type>%String</Type>
+</Property>
+
+<Property name="color">
+<Type>%String</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DataLocation>^classeJulien.couleurTitrePGD</DataLocation>
+<DefaultData>couleurTitrePGDefaultData</DefaultData>
+<IdLocation>^classeJulien.couleurTitrePGD</IdLocation>
+<IndexLocation>^classeJulien.couleurTitrePGI</IndexLocation>
+<StreamLocation>^classeJulien.couleurTitrePGS</StreamLocation>
+<Data name="couleurTitrePGDefaultData">
+<Value name="1">
+<Value>%%CLASSNAME</Value>
+</Value>
+<Value name="2">
+<Value>couleurPG</Value>
+</Value>
+<Value name="3">
+<Value>TitrePG</Value>
+</Value>
+<Value name="4">
+<Value>color</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="classeJulien.identiter">
+<Super>%Persistent</Super>
+<TimeChanged>66651,57756.926698</TimeChanged>
+<TimeCreated>66616,52667.329967</TimeCreated>
+
+<Property name="nom">
+<Type>%String</Type>
+</Property>
+
+<Property name="prenom">
+<Type>%String</Type>
+</Property>
+
+<Property name="adresse">
+<Type>%String</Type>
+</Property>
+
+<Property name="telephone">
+<Type>%String</Type>
+</Property>
+
+<Property name="dateDeNaissance">
+<Type>%String</Type>
+</Property>
+
+<Property name="sexe">
+<Type>%String</Type>
+<Parameter name="CAPTION" value=",Masculin,Feminin"/>
+<Parameter name="VALUELIST" value=",Masculin,Feminin"/>
+</Property>
+
+<Property name="mail">
+<Type>%String</Type>
+</Property>
+
+<Property name="pagaieCouleur">
+<Type>%String</Type>
+<Parameter name="CAPTION" value=",X,Blanche,Jaune,Vert,Bleue,Rouge,Noir"/>
+<Parameter name="VALUELIST" value=",X,Blanche,Jaune,Vert,Bleue,Rouge,Noir"/>
+</Property>
+
+<Property name="numLicence">
+<Type>%String</Type>
+</Property>
+
+<Property name="typeLicence">
+<Type>%String</Type>
+<Parameter name="CAPTION" value=",benevole,3 mois,1 an loisirs,1 an competition"/>
+<Parameter name="VALUELIST" value=",benevole,3 mois,1 an loisirs,1 an competition"/>
+</Property>
+
+<Property name="diplome">
+<Type>%String</Type>
+<Parameter name="CAPTION" value=",X,Initiateur,Moniteur,CQP,BPJEPS"/>
+<Parameter name="VALUELIST" value=",X,Initiateur,Moniteur,CQP,BPJEPS"/>
+</Property>
+
+<Property name="CA">
+<Type>%String</Type>
+<Parameter name="CAPTION" value=",Oui,Non"/>
+<Parameter name="VALUELIST" value=",Oui,Non"/>
+</Property>
+
+<Property name="actif">
+<Type>%String</Type>
+<Parameter name="CAPTION" value=",oui,non"/>
+<Parameter name="VALUELIST" value=",oui,non"/>
+</Property>
+
+<Query name="ParNom">
+<Type>%SQLQuery</Type>
+<SqlQuery>SELECT %ID As "n° ID",nom As "Nom",prenom As "Prénom",dateDeNaissance As "Date De Naissance",sexe As "Sexe", typeLicence As "Type de Licence", pagaieCouleur As "Niveau", diplome As "Diplôme" FROM identiter WHERE actif != 'non' OR actif IS NULL
+ ORDER BY nom</SqlQuery>
+<Parameter name="CONTAINID" value="1"/>
+</Query>
+
+<Query name="ParDiplome">
+<Type>%SQLQuery</Type>
+<SqlQuery>SELECT %ID As "n° ID",nom As "Nom",prenom As "Prénom",telephone As "Téléphone", mail As "Email", numLicence As "n° Licence", pagaieCouleur As "Niveau", diplome As "Diplôme", CA FROM identiter WHERE (diplome = 'Moniteur' OR diplome = 'Initiateur' OR diplome = 'CQP' OR diplome = 'BPJEPS') AND (actif != 'non' OR actif IS NULL)
+ ORDER BY diplome</SqlQuery>
+<Parameter name="CONTAINID" value="1"/>
+</Query>
+
+<Query name="ParCA">
+<Type>%SQLQuery</Type>
+<SqlQuery>SELECT %ID As "n° ID",nom As "Nom",prenom As "Prénom",telephone As "Téléphone", mail As "Email", diplome As "Diplôme", CA FROM identiter WHERE CA = 'Oui' AND (actif != 'non' OR actif IS NULL)
+ ORDER BY CA</SqlQuery>
+<Parameter name="CONTAINID" value="1"/>
+</Query>
+
+<Query name="ParSup">
+<Type>%SQLQuery</Type>
+<SqlQuery>SELECT %ID As "n° ID",nom As "Nom",prenom As "Prénom" FROM identiter WHERE actif != 'non' OR actif IS NULL
+ ORDER BY nom</SqlQuery>
+<Parameter name="CONTAINID" value="1"/>
+</Query>
+
+<Query name="ParNonActif">
+<Type>%SQLQuery</Type>
+<SqlQuery>SELECT %ID As "n° ID",nom As "Nom",prenom As "Prénom" FROM identiter WHERE actif ='non'
+ ORDER BY nom</SqlQuery>
+<Parameter name="CONTAINID" value="1"/>
+</Query>
+
+<Query name="ParSPG">
+<Type>%SQLQuery</Type>
+<SqlQuery>SELECT %ID As "n° ID",nom As "Nom",prenom As "Prénom",dateDeNaissance As "Date De Naissance", sexe As "Sexe", numLicence As "n° Licence", pagaieCouleur As "Niveau" FROM identiter WHERE (pagaieCouleur IS NULL OR pagaieCouleur ='X') AND (actif != 'non' OR actif IS NULL)
+ ORDER BY nom</SqlQuery>
+<Parameter name="CONTAINID" value="1"/>
+</Query>
+
+<Query name="ParPGBlanche">
+<Type>%SQLQuery</Type>
+<SqlQuery>SELECT %ID As "n° ID",nom As "Nom",prenom As "Prénom",dateDeNaissance As "Date De Naissance", sexe As "Sexe", numLicence As "n° Licence", pagaieCouleur As "Niveau" FROM identiter WHERE pagaieCouleur = 'Blanche'  AND (actif != 'non' OR actif IS NULL)
+ ORDER BY nom</SqlQuery>
+<Parameter name="CONTAINID" value="1"/>
+</Query>
+
+<Query name="ParPGJaune">
+<Type>%SQLQuery</Type>
+<SqlQuery>SELECT %ID As "n° ID",nom As "Nom",prenom As "Prénom",dateDeNaissance As "Date De Naissance", sexe As "Sexe", numLicence As "n° Licence", pagaieCouleur As "Niveau" FROM identiter WHERE pagaieCouleur = 'Jaune'  AND (actif != 'non' OR actif IS NULL)
+ ORDER BY nom</SqlQuery>
+<Parameter name="CONTAINID" value="1"/>
+</Query>
+
+<Query name="ParPGVert">
+<Type>%SQLQuery</Type>
+<SqlQuery>SELECT %ID As "n° ID",nom As "Nom",prenom As "Prénom",dateDeNaissance As "Date De Naissance", sexe As "Sexe", numLicence As "n° Licence", pagaieCouleur As "Niveau" FROM identiter WHERE pagaieCouleur = 'Vert'  AND (actif != 'non' OR actif IS NULL)
+ ORDER BY nom</SqlQuery>
+<Parameter name="CONTAINID" value="1"/>
+</Query>
+
+<Query name="ParPGBleue">
+<Type>%SQLQuery</Type>
+<SqlQuery>SELECT %ID As "n° ID",nom As "Nom",prenom As "Prénom",dateDeNaissance As "Date De Naissance", sexe As "Sexe", numLicence As "n° Licence", pagaieCouleur As "Niveau" FROM identiter WHERE pagaieCouleur = 'Bleue'  AND (actif != 'non' OR actif IS NULL)
+ ORDER BY nom</SqlQuery>
+<Parameter name="CONTAINID" value="1"/>
+</Query>
+
+<Query name="ParPGRouge">
+<Type>%SQLQuery</Type>
+<SqlQuery>SELECT %ID As "n° ID",nom As "Nom",prenom As "Prénom",dateDeNaissance As "Date De Naissance", sexe As "Sexe", numLicence As "n° Licence", pagaieCouleur As "Niveau" FROM identiter WHERE pagaieCouleur = 'Rouge'  AND (actif != 'non' OR actif IS NULL)
+ ORDER BY nom</SqlQuery>
+<Parameter name="CONTAINID" value="1"/>
+</Query>
+
+<Query name="ParPGNoir">
+<Type>%SQLQuery</Type>
+<SqlQuery>SELECT %ID As "n° ID",nom As "Nom",prenom As "Prénom",dateDeNaissance As "Date De Naissance", sexe As "Sexe", numLicence As "n° Licence", pagaieCouleur As "Niveau" FROM identiter WHERE pagaieCouleur = 'Noir'  AND (actif != 'non' OR actif IS NULL)
+ ORDER BY nom</SqlQuery>
+<Parameter name="CONTAINID" value="1"/>
+</Query>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DataLocation>^classeJulien.identiterD</DataLocation>
+<DefaultData>identiterDefaultData</DefaultData>
+<IdLocation>^classeJulien.identiterD</IdLocation>
+<IndexLocation>^classeJulien.identiterI</IndexLocation>
+<StreamLocation>^classeJulien.identiterS</StreamLocation>
+<Data name="identiterDefaultData">
+<Value name="1">
+<Value>%%CLASSNAME</Value>
+</Value>
+<Value name="2">
+<Value>nom</Value>
+</Value>
+<Value name="3">
+<Value>prenom</Value>
+</Value>
+<Value name="4">
+<Value>adresse</Value>
+</Value>
+<Value name="5">
+<Value>telephone</Value>
+</Value>
+<Value name="6">
+<Value>dateDeNaissance</Value>
+</Value>
+<Value name="7">
+<Value>sexe</Value>
+</Value>
+<Value name="8">
+<Value>mail</Value>
+</Value>
+<Value name="9">
+<Value>pagaieCouleur</Value>
+</Value>
+<Value name="10">
+<Value>numLicence</Value>
+</Value>
+<Value name="11">
+<Value>diplome</Value>
+</Value>
+<Value name="12">
+<Value>CA</Value>
+</Value>
+<Value name="13">
+<Value>actif</Value>
+</Value>
+<Value name="14">
+<Value>typeLicence</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="classeJulien.utilisateur">
+<Super>%Persistent</Super>
+<TimeChanged>66652,36447.837681</TimeChanged>
+<TimeCreated>66640,42381.585135</TimeCreated>
+
+<Property name="codeUtilisateur">
+<Type>%String</Type>
+</Property>
+
+<Property name="motPass">
+<Type>%String</Type>
+</Property>
+
+<Property name="Nom">
+<Type>%String</Type>
+</Property>
+
+<Property name="Prenom">
+<Type>%String</Type>
+</Property>
+
+<Property name="Droit">
+<Type>%String</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DataLocation>^classeJulien.utilisateurD</DataLocation>
+<DefaultData>utilisateurDefaultData</DefaultData>
+<IdLocation>^classeJulien.utilisateurD</IdLocation>
+<IndexLocation>^classeJulien.utilisateurI</IndexLocation>
+<StreamLocation>^classeJulien.utilisateurS</StreamLocation>
+<Data name="utilisateurDefaultData">
+<Value name="1">
+<Value>%%CLASSNAME</Value>
+</Value>
+<Value name="2">
+<Value>codeUtilisateur</Value>
+</Value>
+<Value name="3">
+<Value>motPass</Value>
+</Value>
+<Value name="4">
+<Value>Nom</Value>
+</Value>
+<Value name="5">
+<Value>Prenom</Value>
+</Value>
+<Value name="6">
+<Value>Droit</Value>
+</Value>
+</Data>
+</Storage>
+
+<Query name="recherche">
+<Type>%SQLQuery</Type>
+<FormalSpec>user:%String,mp:%String</FormalSpec>
+<SqlQuery>SELECT %ID,codeUtilisateur,motPass FROM utilisateur
+ WHERE (codeUtilisateur = :user AND motPass = :mp)</SqlQuery>
+<Parameter name="CONTAINID" value="1"/>
+</Query>
+
+<Query name="ParUtilisateur">
+<Type>%SQLQuery</Type>
+<SqlQuery>SELECT %ID As "n° ID",nom As "Nom",prenom As "Prénom",Droit As "Droit", codeUtilisateur As "Utilisateur" FROM utilisateur</SqlQuery>
+<Parameter name="CONTAINID" value="1"/>
+</Query>
+
+<Method name="usermp">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>user:%String,mp:%String</FormalSpec>
+<Language>objectscript</Language>
+<Implementation><![CDATA[
+	Set status=0
+	S id="" For {
+		Set id=$O(^classeJulien.utilisateurD(id))	Q:id=""
+		if $LG(^classeJulien.utilisateurD(id),2)=user, $LG(^classeJulien.utilisateurD(id),3) =mp {
+			Set status=id
+	
+	}
+		
+	}
+	Quit status
+]]></Implementation>
+</Method>
+</Class>
+
+
+<CSP name="CouleurPG.csp" application="/csp/julien/" default="1"><![CDATA[
+<html>
+<head>
+
+<!-- Put your page Title here -->
+<title>	Cache Server Page </title>
+
+</head>
+
+<body>
+
+	
+<head>
+<title>Cache Server Page - classeJulien.couleurTitrePG (JULIEN)</title>
+</head>
+<h1 align='center'>classeJulien.couleurTitrePG</h1>
+<!-- This function is needed by the search button on the form -->
+<script language='javascript'>
+<!--
+function update(id)
+{
+     #server(..formLoad(id))#;
+     return true;
+}
+
+// -->
+</script>
+
+<!-- set the domain so error messages could be properly localized -->
+<csp:class DOMAIN='%CSPBind'>
+
+<!-- use CSP:OBJECT tag to create a reference to an instance of the class -->
+<csp:object name='objForm' classname='classeJulien.couleurTitrePG' OBJID='#(%request.Get("OBJID"))#'>
+
+<!-- use csp:search tag to create a javascript function to invoke a search page --> 
+<csp:search name='form_search' classname='classeJulien.couleurTitrePG' where='%Id()' options='popup,nopredicates' onselect='update'>
+
+<form name='form' cspbind='objForm' cspjs='All' onsubmit='return form_validate();'>
+<center>
+<table cellpadding='3'>
+	<tr>
+		<td><b><div align='right'>couleurPG:</div></b></td>
+		<td><input type='text' name='couleurPG' cspbind='couleurPG' size='50'></td>
+	</tr>
+	<tr>
+		<td><b><div align='right'>TitrePG:</div></b></td>
+		<td><input type='text' name='TitrePG' cspbind='TitrePG' size='50'></td>
+	</tr>
+	<tr>
+		<td><b><div align='right'>color</div></b></td>
+		<td><input type='text' name='color' cspbind='color' size='50'></td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><input type='button' name='btnClear' value='#(%response.GetText("","%CSPSearch","ClearBtn","clear"))#' onclick='form_new();'>
+	<input type='button' name='btnSave' value='#(%response.GetText("","%CSPSearch","SaveBtn","save"))#' onclick='form_save();'>
+	<input type='button' name='btnSearch' value='#(%response.GetText("","%CSPSearch","SearchBtn","search"))#' onclick='form_search();'></td>
+	</tr>
+</table>
+</center>
+</form>
+
+</body>
+</html>
+]]></CSP>
+
+
+<CSP name="DocImportant.csp" application="/csp/julien/" default="1"><![CDATA[
+<html>
+<head>
+<style>
+figure {
+    border: thin #c0c0c0 solid;
+    display: flex;
+    flex-flow: column;
+    padding: 5px;
+    max-width: 353px;
+    margin: auto;
+}
+figcaption {
+    background-color: #FCF562;
+    color: #222;
+    font: italic smaller sans-serif;
+    padding: 3px;
+    text-align: center;
+}
+</style>
+
+<!-- Put your page Title here -->
+<title>	Cache Server Page </title>
+
+</head>
+
+<body>
+<center>
+	
+	<h2 align='center'><u>Document Important:</u></h2>
+	<p>Retrouver ci-dessous les documents important pour le bon fonctionnement du club.</p>
+	<br>
+	
+	<figure>
+	<img src="ig/Carte_1_jour.png"
+     alt="Initiation Gratuite Ete 2023"
+     width="353"
+     height="500"
+     title="Flyer Procédure Licence Jour">
+     <figcaption>Document Important lors des journées d'initiation. (protocole à suivre pour licence jour)</figcaption>
+     </figure>
+     <a href="ig/Carte_1_jour.png" download="Licence_jour.png"><img src="ig/download.png"
+     																					width="35"
+     																					height="45"></img></a>	
+</body>
+</html>
+]]></CSP>
+
+
+<CSP name="EnTeteKWC.csp" application="/csp/julien/" default="1"><![CDATA[
+<html>
+<head>
+
+<!-- Put your page Title here -->
+<title>	Intranet KWC </title>
+<link rel="icon" type="image/png" href="ig/logo.png" />
+<csp:include page="StyleCssNew.csp">
+</head>
+<script language="cache" runat="server">
+set commandButtonR="commandButton"
+S droit=$P($G(%session.Data("user")),"\",3)
+</script>
+<body>
+	<legend style="text-align:center;">
+	<div style="float:right;">
+	#($zdt($h,4))# 
+	&nbsp;
+	<button class="#(commandButtonR)#" onclick="quit()">Quitter</button>
+	</div>
+	Listing Membres <acronym title="Kayak Wasquehal Club" lang="fr">KWC</acronym>
+	<div style="float:left;">
+	<button class="#(commandButtonR)#" onclick="ouvremenu()">Menu</button> &nbsp; #($P($G(%session.Data("user")),"\",2))# &nbsp; <a>Droit:</a> #($P($G(%session.Data("user")),"\",3))# <a>, </a>
+	<csp:if condition="droit=5">
+		<a>Super-Admin</a>
+	</csp:if>
+	<csp:if condition="droit=4">
+		<a>Admin</a>
+	</csp:if>
+	<csp:if condition="droit=3">
+		<a>Cadre</a>
+	</csp:if>
+	<csp:if condition="droit=2">
+		<a>Membre</a>
+	</csp:if>
+	<csp:if condition="droit=1">
+		<a>Visionneur</a>
+	</csp:if>
+	</div>
+	</legend>
+	
+<csp:if condition=%request.Get("menu")=1>
+<br>
+<div class="portalTitle ">
+		<div style="float:left;">
+				&nbsp;
+				<button class="#(commandButtonR)#" onclick="ouvrepage('listmembre')">Listing Membres</button>
+				<csp:if condition="droit>1">
+				&nbsp;
+				<button class="#(commandButtonR)#" onclick="ouvrepage('listdip');">Liste Diplômers</button>
+				&nbsp;
+				<button class="#(commandButtonR)#" onclick="ouvrepage('listCA');">Membre CA</button>
+				&nbsp;
+				<button class="#(commandButtonR)#" onclick="ouvrepage('ParPG');">Par Pagaie Couleur</button>
+				</csp:if>
+				<csp:if condition="droit>3">
+				&nbsp;
+				<button class="#(commandButtonR)#" onclick="ouvrepage('newfiche');">Nouvelle Fiche</button>
+				&nbsp;
+				<button class="#(commandButtonR)#" onclick="ouvrepage('supprimer')">Supprimer/Modifier</button>
+				</csp:if>
+				<csp:if condition="droit>1">
+				&nbsp;
+				<button class="#(commandButtonR)#" onclick="ouvrepage('recherche')">Recherche</button>
+				</csp:if>
+				&nbsp;
+				<button class="#(commandButtonR)#" onclick="ouvremenu2()">Autres</button>
+				<csp:if condition="droit>3">
+				&nbsp;
+				<button class="#(commandButtonR)#" onclick="ouvremenu3()">Admin</button>
+				</csp:if>
+	</div>
+</div>
+</csp:if>
+
+<csp:if condition=%request.Get("menu2")=1>
+<br>
+<div class="portalTitle ">
+		<div style="float:center;">
+				&nbsp;
+				<button class="#(commandButtonR)#" onclick="ouvrepage2('autre')">Evènement</button>
+				&nbsp;
+				<button class="#(commandButtonR)#" onclick="ouvrepage2('DocImportant');">Doc Important</button>
+				&nbsp;
+				<button class="#(commandButtonR)#" onClick="window.location.href='https://www.kayakwasquehal.com/'">Site</button>
+				<csp:if condition="droit>3">
+				&nbsp;
+				<button class="#(commandButtonR)#" onClick="window.location.href='https://ffck-goal.multimediabs.com/login'">Intranet FFCK</button>
+				</csp:if>
+	</div>
+</div>
+</csp:if>
+
+<csp:if condition=%request.Get("menuadmin")=1>
+<br>
+<div class="portalTitle ">
+		<div style="float:center;">
+				&nbsp;
+				<button class="#(commandButtonR)#" onclick="ouvrepage3('role')">rôle</button>
+				<csp:if condition="droit>4">
+				&nbsp;
+				<button class="#(commandButtonR)#" onclick="ouvrepage3('codeUtilisateur');">ajout utilisateur</button>
+				</csp:if>
+	</div>
+</div>
+</csp:if>
+
+<csp:if condition=%request.Get("ouvrepage")="newfiche">
+	<br>
+	<csp:include page="ficheidentiter.csp">
+</csp:if>
+<csp:if condition=%request.Get("ouvrepage")="listmembre">
+	<br>
+	<csp:include page="listMembre.csp">
+</csp:if>
+<csp:if condition=%request.Get("ouvrepage")="listdip">
+	<br>
+	<csp:include page="listDiplomer.csp">
+</csp:if>
+<csp:if condition=%request.Get("ouvrepage")="listCA">
+	<br>
+	<csp:include page="listCA.csp">
+</csp:if>
+<csp:if condition=%request.Get("ouvrepage")="ParPG">
+	<br>
+	<csp:include page="listPGEric.csp">
+</csp:if>
+<csp:if condition=%request.Get("ouvrepage")="supprimer">
+	<br>
+	<csp:include page="supprimer.csp">
+</csp:if>
+<csp:if condition=%request.Get("ouvrepage")="recherche">
+	<br>
+	<csp:include page="recherche.csp">
+</csp:if>
+
+
+<csp:if condition=%request.Get("ouvrepage2")="autre">
+	<br>
+	<csp:include page="autre.csp">
+</csp:if>
+<csp:if condition=%request.Get("ouvrepage2")="DocImportant">
+	<br>
+	<csp:include page="DocImportant.csp">
+</csp:if>
+
+
+<csp:if condition=%request.Get("ouvrepage3")="role">
+	<br>
+	<csp:include page="listutilisateur.csp">
+</csp:if>
+<csp:if condition=%request.Get("ouvrepage3")="codeUtilisateur">
+	<br>
+	<csp:include page="codeUtilisateur.csp">
+</csp:if>
+
+<center>
+<br>
+<br>
+<br>
+<br>
+<br>
+<csp:if condition=%request.Get("menu")="">
+	<br>
+	<h1>Bienvenu sur le site de visualisation et de gestion des membres du Kayak Wasquehal Club</h1>
+	<br>
+	<p>Cliquer sur le bouton Menu en haut à gauche pour voir les possibilités que nous vous offrons !</p>
+</csp:if>
+
+
+<csp:if condition=%request.Get("menu")="1">
+	<br>
+	<button onClick="window.location.href=''" class="#(commandButtonR)#">Haut de Page</button>
+	<br>
+	<p>Pour voir de nouvelle information, retourner en haut.</p>
+</csp:if>
+
+</center>
+
+<br>
+<footer><small>Copyright © 2023 Site apprentissage stage Julien F.</small></footer>
+
+</body>
+</html>
+
+<script language="javascript">
+function ouvremenu() {
+	window.location="EnTeteKWC.csp?menu=1";
+}
+function ouvremenu2() {
+	window.location="EnTeteKWC.csp?menu=1&menu2=1";
+}
+function ouvremenu3() {
+	window.location="EnTeteKWC.csp?menu=1&menuadmin=1";
+}
+function ouvrepage(value){
+		window.location="EnTeteKWC.csp?menu=1"+"&ouvrepage="+value;
+}
+function ouvrepage2(value){
+		window.location="EnTeteKWC.csp?menu=1&menu2=1"+"&ouvrepage2="+value;
+}
+function ouvrepage3(value){
+		window.location="EnTeteKWC.csp?menu=1&menuadmin=1"+"&ouvrepage3="+value;
+}
+function quit(){
+	window.location='index.csp';
+	window.close();
+}
+</script>]]></CSP>
+
+
+<CSP name="autre.csp" application="/csp/julien/" default="1"><![CDATA[
+<html>
+<head>
+<style>
+figure {
+    border: thin #c0c0c0 solid;
+    display: flex;
+    flex-flow: column;
+    padding: 5px;
+    max-width: 353px;
+    margin: auto;
+}
+figcaption {
+    background-color: #FCF562;
+    color: #222;
+    font: italic smaller sans-serif;
+    padding: 3px;
+    text-align: center;
+}
+</style>
+
+<!-- Put your page Title here -->
+<title>	Cache Server Page </title>
+
+</head>
+
+<body>
+<center>
+	<!--<h1 align='center'><FONT size="10pt"><U>Retrouver les dernièrs infos de votre club ci-dessus:</U></FONT></h1>
+	<br>-->
+	
+	
+	<h2 align='center'><u>Les prochains évènements de votre club:</u></h2>
+	<p>N'hésiter pas à partage les évènements ci-dessous en téléchargent les flyers et en les diffusants.</p>
+	<br>
+	
+	<figure>
+	<img src="ig/Initiation_ete2023.png"
+     alt="Initiation Gratuite Ete 2023"
+     width="353"
+     height="500"
+     title="Flyer Initiation Gratuite Eté 2023">
+     <figcaption>Flyer publicitaires Initiation été 2023 en partenariat avec la ville de Wasquehal</figcaption>
+     </figure>
+     
+     <a href="ig/Initiation_ete2023.png" download="Flyer_Initiation_Ete_2023.png"><img src="ig/download.png"
+     																					width="35"
+     																					height="45"></img></a>
+	
+	
+	<!--<br>
+	<iframe src="https://www.kayakwasquehal.com/"
+        title="Exemple d'iframe" width="400" height="300">
+	</iframe>-->
+</body>
+</html>
+]]></CSP>
+
+
+<CSP name="codeUtilisateur.csp" application="/csp/julien/" default="1"><![CDATA[
+<html>
+
+<head>
+<title>Cache Server Page - classeJulien.utilisateur (JULIEN)</title>
+</head>
+<body>
+
+
+
+<h1 align='center'>Ajouter/Modifier un utilisateur</h1>
+<!-- This function is needed by the search button on the form -->
+<script language='javascript'>
+<!--
+function update(id)
+{
+     #server(..formLoad(id))#;
+     return true;
+}
+
+// -->
+</script>
+
+<!-- set the domain so error messages could be properly localized -->
+<csp:class DOMAIN='%CSPBind'>
+
+<!-- use CSP:OBJECT tag to create a reference to an instance of the class -->
+<csp:object name='objForm' classname='classeJulien.utilisateur' OBJID='#(%request.Get("OBJID"))#'>
+
+<!-- use csp:search tag to create a javascript function to invoke a search page --> 
+<csp:search name='form_search' classname='classeJulien.utilisateur' where='%Id()' options='popup,nopredicates' onselect='update'>
+
+<form name='form' cspbind='objForm' cspjs='All' onsubmit='return form_validate();'>
+<center>
+<table cellpadding='3' class="tnbrTable">
+	<tr class="finderItemSelected">
+		<td><b><div align='right'>Droit:</div></b></td>
+		<td><select name='Droit' cspbind='Droit'>
+		  <option value=''>Selectionner</option>
+		  <option value='1'>Visionneur [1]</option>
+		  <option value='2'>Membre [2]</option>
+		  <option value='3'>Cadres [3]</option>
+		  <option value='4'>Admin [4]</option>
+		  <option value='5'>SupAdmin [5]</option>
+		</select></td>
+	</tr>
+		<td><b><div align='right'>Nom:</div></b></td>
+		<td><input placeholder="Dupont" type='text' name='Nom' cspbind='Nom' size='50'></td>
+	</tr>
+	<tr class="finderItemSelected">
+		<td><b><div align='right'>Prenom:</div></b></td>
+		<td><input placeholder="Benjamin" type='text' name='Prenom' cspbind='Prenom' size='50'></td>
+	</tr>
+	<tr>
+		<td><b><div align='right'>Identifiant:</div></b></td>
+		<td><input placeholder="prenom.nom" type='text' name='codeUtilisateur' cspbind='codeUtilisateur' size='50'></td>
+	</tr>
+	<tr class="finderItemSelected">
+		<td><b><div align='right'>Mot de passe:</div></b></td>
+		<td><labell><input placeholder="MotDePasse" type='password' name='motPass' cspbind='motPass' size='50'>
+		<div class="password-icon">
+   		<i data-feather="eye"></i>
+    	<i data-feather="eye-off"></i>
+  		</div></labell></td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><input class="#(commandButtonR)#" type='button' name='btnClear' value='#(%response.GetText("","%CSPSearch","ClearBtn","clear"))#' onclick='form_new();'>
+	<input class="#(commandButtonR)#" type='button' name='btnSave' value='#(%response.GetText("","%CSPSearch","SaveBtn","save"))#' onclick='form_save();'>
+	<input class="#(commandButtonR)#" type='button' name='btnSearch' value='#(%response.GetText("","%CSPSearch","SearchBtn","search"))#' onclick='form_search();'></td>
+	</tr>
+
+</table>
+</center>
+</form>
+
+<!--
+<csp:query name="query" classname="classeJulien.utilisateur" queryname="recherche" P1="julien.foy" P2="1234">
+<table border=1 bgcolor="">
+	<tr>
+	<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+		<th align=left><b>#(query.GetColumnHeader(queryCol))#</b></th>
+	</csp:while>
+	</tr>
+
+	<csp:while counter=queryRow condition=query.Next()>
+	<tr class='#($S(queryRow#2:"DarkRow",1:"LightRow"))#'>
+		<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+			<td>#(query.GetData(queryCol))#</td>
+		</csp:while>
+	</tr>
+	</csp:while>
+</table>-->
+
+<script src="https://unpkg.com/feather-icons"></script>
+<script>
+  feather.replace();
+</script>
+
+
+<script language="javascript">
+const eye = document.querySelector(".feather-eye");
+const eyeoff = document.querySelector(".feather-eye-off");
+const passwordField = document.querySelector("input[type=password]");
+
+eye.addEventListener("click", () => {
+  eye.style.display = "none";
+  eyeoff.style.display = "block";
+  passwordField.type = "text";
+});
+
+eyeoff.addEventListener("click", () => {
+  eyeoff.style.display = "none";
+  eye.style.display = "block";
+  passwordField.type = "password";
+});
+</script>
+</body>
+</html>
+]]></CSP>
+
+
+<CSP name="ficheidentiter.csp" application="/csp/julien/" default="1"><![CDATA[
+<html>
+
+<head>
+
+<!-- Put your page Title here -->
+<title>	Site test & découverte IRIS </title>
+<link rel="icon" type="image/png" href="ig/logo.png" />
+
+</head>
+
+<body>
+
+		<!-- Put your page code here -->
+
+<head>
+
+</head>
+
+<header>
+</header>
+
+    
+<!-- This function is needed by the search button on the form -->
+<script language='javascript'>
+<!--
+function update(id)
+{
+     #server(..formLoad(id))#;
+     return true;
+}
+function pre_form_save()
+{
+	form_save();
+	window.location.reload();
+}
+// -->
+</script>
+<script language="cache" runat="server">
+set couleur = ""
+set OBJID=%request.Get("OBJID")
+if OBJID'="" {
+set couleur=$lg(^classeJulien.identiterD(OBJID),9)
+}
+</script>
+<!-- set the domain so error messages could be properly localized -->
+<csp:class DOMAIN='%CSPBind'>
+
+<!-- use CSP:OBJECT tag to create a reference to an instance of the class -->
+<csp:object name='objForm' classname='classeJulien.identiter' OBJID='#(%request.Get("OBJID"))#'>
+
+<!-- use csp:search tag to create a javascript function to invoke a search page --> 
+<csp:search name='form_search' classname='classeJulien.identiter' where='%Id()' options='popup,nopredicates' onselect='update'>
+
+<form name='form' cspbind='objForm' cspjs='All' onsubmit='return form_validate();'>
+<center>
+<table class="tnbrTable">
+	<tr class="finderItemSelected"><td colspan=2 align="center"><b>Nouvelle Fiche</b></td></tr>
+	<tr class>
+		<td class="#(couleur)#"><b><div align='left'>Nom De Famille:</div></b></td>
+		<td><input placeholder="Dupont" type='text' name='nom' cspbind='nom' size='50' required></td>
+	</tr>
+	<tr class="finderItemSelected">
+		<td><b><div align='left'>Prénom:</div></b></td>
+		<td><input placeholder="Benjamin" type='text' name='prenom' cspbind='prenom' size='50' required></td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='left'>Date De Naissance:</div></b></td>
+		<td><input placeholder="11/01/2023" type='text' name='dateDeNaissance' cspbind='dateDeNaissance' size='50' required></td>
+	</tr>
+	
+	<tr class="finderItemSelected">
+		<td><b><div align='left'>Sexe:</div></b></td>
+		<td><select name='sexe' cspbind='sexe'>
+		  <option value=''>Selectionner</option>
+		  <option value='Masculin'>Masculin</option>
+		  <option value='Feminin'>Feminin</option>
+		</select></td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='left'>Adresse:</div></b></td>
+		<td><input placeholder="adresse membre" type='text' name='adresse' cspbind='adresse' size='50'></td>
+	</tr>
+	<tr class="finderItemSelected">
+		<td><b><div align='left'>Mail:</div></b></td>
+		<td><input type='text' name='mail' cspbind='mail' size='50' placeholder="votre-email@site.com" required></td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='left'>Téléphone:</div></b></td>
+		<td><input placeholder="numéro mobile" type='text' name='telephone' cspbind='telephone' size='50'></td>
+	</tr>
+	<tr class="finderItemSelected">
+		<td><b><div align='left'>Numéro de Licence:</div></b></td>
+		<td><input placeholder="numéro licence" type='text' name='numLicence' cspbind='numLicence' size='50' required></td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='left'>Niveau:</div></b></td>
+		<td><select name='pagaieCouleur' cspbind='pagaieCouleur'>
+		  <option value=''>Selectionner</option>
+		  <option value='X'>X</option>
+		  <option value='Blanche'>Pagaie Blanche</option>
+		  <option value='Jaune' class="Jaune">Pagaie Jaune</option>
+		  <option value='Vert' class="Vert">Pagaie Verte</option>
+		  <option value='Bleue' class="Bleue">Pagaie Bleue</option>
+		  <option value='Rouge' class="Rouge">Pagaie Rouge</option>
+		  <option value='Noir' class="Noir">Pagaie Noir</option>
+		</select></td>
+	</tr>
+	<tr class="finderItemSelected">
+		<td><b><div align='left'>Diplôme:</div></b></td>
+		<td><select name='diplome' cspbind='diplome'>
+		  <option value=''>Selectionner</option>
+		  <option value='X'>X</option>
+		  <option value='Initiateur'>Initiateur</option>
+		  <option value='Moniteur'>Moniteur</option>
+		  <option value='CQP'>CQP</option>
+		  <option value='BPJEPS'>BPJEPS</option>
+		</select></td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='left'>Membre du CA:</div></b></td>
+		<td><select name='CA' cspbind='CA'>
+		  <option value=''>Selectionner</option>
+		  <option value='Oui'>Oui</option>
+		  <option value='Non'>Non</option>
+		</select></td>
+	</tr>
+	<tr class="finderItemSelected">
+		<td><b><div align='left'>Actif:</div></b></td>
+		<td><select name='actif' cspbind='actif'>
+		  <option value=''>Selectionner</option>
+		  <option value='oui'>Oui</option>
+		  <option value='non'>Non</option>
+		</select></td>
+	</tr>
+	</table>
+	<br>
+	<input class="#(commandButtonR)#" type='button' name='btnClear' value='Nouveau' onclick='form_new();'>
+	<input class="#(commandButtonR)#" type='button' name='btnSave' value='Enregistrer' onclick='pre_form_save();'>
+	<csp:if condition=OBJID'="">
+	<input class="#(commandButtonR)#" type='button' name='btndelete' value='Supprimer' onclick='sup("#(OBJID)#");'>
+	</csp:if>
+</form>
+
+
+
+<script language=javascript>
+function ouvreFiche(value)
+{
+	window.location="identiter.csp?OBJID="+value;
+}
+function sup(OBJID)
+{
+	if (confirm("suppression de ID "+OBJID)){
+		#server(..supid(OBJID))#;
+	}
+	window.location="identiter.CSP";
+	
+	
+function verif() {
+	var name = document.forms["RegForm"]["nom"];
+    var firstname = document.forms["RegForm"]["prenom"];
+    var birthday = document.forms["RegForm"]["dateDeNaissance"];
+    var address = document.forms["RegForm"]["adresse"];
+    var email = document.forms["RegForm"]["mail"];
+    var phone = document.forms["RegForm"]["telephone"];
+    var diplome = document.forms["RegForm"]["diplome"];
+
+    if (name.value == "") {
+       alert("Mettez Le Nom.");
+       name.focus();
+       return false;
+    }
+       if (firstname.value == "") {
+       alert("Mettez le Prénom.");
+       name.focus();
+       return false;
+    }
+    if (email.value == "") {
+       alert("Mettez une adresse email valide.");
+       email.focus();
+       return false;
+    }
+    if (email.value.indexOf("@", 0) < 0) {
+       alert("Mettez une adresse email valide.");
+       email.focus();
+       return false;
+    }
+    if (email.value.indexOf(".", 0) < 0) {
+       alert("Mettez une adresse email valide.");
+       email.focus();
+       return false;
+    }
+    if (phone.value == "") {
+       alert("Mettez votre numéro de téléphone.");
+       phone.focus();
+       return false;
+    }
+    if (birthday.value == "") {
+       alert("Saisissez la date naissance.");
+       password.focus();
+       return false;
+    }
+    if (diplome.value == "") {
+       alert("Indiquer dans la catégorie Diplôme.");
+       comment.focus();
+       return false;
+    }
+    return true;
+    }
+</script>
+
+<script language="cache" method="supid" arguments="OBJID">
+kill ^classeJulien.identiterD(OBJID)
+</script>
+</body>
+</html>
+]]></CSP>
+
+
+<CSP name="identiter.CSP" application="/csp/julien/" default="1"><![CDATA[
+<html>
+
+<head>
+
+<!-- Put your page Title here -->
+<title>	Site test & découverte IRIS </title>
+
+</head>
+
+<body>
+
+		<!-- Put your page code here -->
+
+<head>
+<title>classeJulien.identiter (JULIEN)</title>
+<csp:include page="EnTeteKWC.csp">
+
+</head>
+
+<header>
+</header>
+
+<nav>
+      <ul>
+        <li><a href="#TotalMembres">Listing Membres</a></li>
+        <li><a href="#Diplomer">Listing Diplômers</a></li>
+        <li><a href="#CA">Listing Membres CA</a></li>
+      </ul>
+
+        <!-- Un formulaire de recherche est une autre façon de naviguer de
+            façon non?linéaire dans un site. -->
+
+    <form>
+		<input type="search" name="q" placeholder="Rechercher">
+		<input type="submit" value="Lancer !">
+	</form>
+</nav>
+      
+<!-- This function is needed by the search button on the form -->
+<script language='javascript'>
+<!--
+function update(id)
+{
+     #server(..formLoad(id))#;
+     return true;
+}
+function pre_form_save()
+{
+	form_save();
+	window.location.reload();
+}
+// -->
+</script>
+<script language="cache" runat="server">
+set couleur = ""
+set OBJID=%request.Get("OBJID")
+if OBJID'="" {
+set couleur=$lg(^classeJulien.identiterD(OBJID),9)
+}
+</script>
+<!-- set the domain so error messages could be properly localized -->
+<csp:class DOMAIN='%CSPBind'>
+
+<!-- use CSP:OBJECT tag to create a reference to an instance of the class -->
+<csp:object name='objForm' classname='classeJulien.identiter' OBJID='#(%request.Get("OBJID"))#'>
+
+<!-- use csp:search tag to create a javascript function to invoke a search page --> 
+<csp:search name='form_search' classname='classeJulien.identiter' where='%Id()' options='popup,nopredicates' onselect='update'>
+
+<form name='form' cspbind='objForm' cspjs='All' onsubmit='return form_validate();'>
+<center>
+<table class="tableaux">
+	<tr class>
+		<td class="#(couleur)#"><b><div align='right'>Nom De Famille:</div></b></td>
+		<td><input placeholder="Dupont" type='text' name='nom' cspbind='nom' size='50'></td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='right'>Prénom:</div></b></td>
+		<td><input placeholder="Benjamin" type='text' name='prenom' cspbind='prenom' size='50'></td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='right'>Date De Naissance:</div></b></td>
+		<td><input placeholder="11/01/2023" type='text' name='dateDeNaissance' cspbind='dateDeNaissance' size='50'></td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='right'>Sexe:</div></b></td>
+		<td><select name='sexe' cspbind='sexe'>
+		  <option value=''>Selectionner</option>
+		  <option value='Masculin'>Masculin</option>
+		  <option value='Feminin'>Feminin</option>
+		</select></td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='right'>Adresse:</div></b></td>
+		<td><input placeholder="11 rue de Lille, 59000" type='text' name='adresse' cspbind='adresse' size='50'></td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='right'>Mail:</div></b></td>
+		<td><input type='text' name='mail' cspbind='mail' size='50' placeholder="votre-email@site.com"></td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='right'>Téléphone:</div></b></td>
+		<td><input placeholder="0601020304" type='text' name='telephone' cspbind='telephone' size='50'></td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='right'>Numéro de Licence:</div></b></td>
+		<td><input placeholder="012345" type='text' name='numLicence' cspbind='numLicence' size='50'></td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='right'>Niveau:</div></b></td>
+		<td><select name='pagaieCouleur' cspbind='pagaieCouleur'>
+		  <option value=''>Selectionner</option>
+		  <option value='X'>X</option>
+		  <option value='Blanche'>Pagaie Blanche</option>
+		  <option value='Jaune' class="Jaune">Pagaie Jaune</option>
+		  <option value='Vert' class="Vert">Pagaie Verte</option>
+		  <option value='Bleue' class="Bleue">Pagaie Bleue</option>
+		  <option value='Rouge' class="Rouge">Pagaie Rouge</option>
+		  <option value='Noir' class="Noir">Pagaie Noir</option>
+		</select></td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='right'>Diplôme:</div></b></td>
+		<td><select name='diplome' cspbind='diplome'>
+		  <option value=''>Selectionner</option>
+		  <option value='X'>X</option>
+		  <option value='Initiateur'>Initiateur</option>
+		  <option value='Moniteur'>Moniteur</option>
+		  <option value='CQP'>CQP</option>
+		  <option value='BPJEPS'>BPJEPS</option>
+		</select></td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='right'>Membre du CA:</div></b></td>
+		<td><select name='CA' cspbind='CA'>
+		  <option value=''>Selectionner</option>
+		  <option value='Oui'>Oui</option>
+		  <option value='Non'>Non</option>
+		</select></td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><input type='button' name='btnClear' value='Nouveau' onclick='form_new();'>
+	<input type='button' name='btnSave' value='Enregistrer' onclick='pre_form_save();'>
+	<csp:if condition=OBJID'="">
+	<input type='button' name='btndelete' value='Supprimer' onclick='sup("#(OBJID)#");'>
+	</csp:if>
+	</tr>
+</table>
+</form>
+
+<h1 align='center' id="TotalMembres">Listing Total Des Membres</h1>
+
+		<csp:query name="query" classname="classeJulien.identiter" queryname="ParNom">
+<table class="table">
+	<tr>
+	<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+		<th align=left><b>#(query.GetColumnHeader(queryCol))#</b></th>
+	</csp:while>
+	</tr>
+
+	<csp:while counter=queryRow condition=query.Next()>
+	<tr class='#($S(queryRow#2:"DarkRow",1:"LightRow"))#' onClick="ouvreFiche('#(query.GetData(1))#')">
+	<script language="cache" runat="server">
+	set couleur=$lg(^classeJulien.identiterD(query.GetData(1)),9)
+	</script>
+		<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+			<td class="#(couleur)#" title="Modifier">#($ZCONVERT(query.GetData(queryCol),"U"))#</td>
+		</csp:while>
+	</tr>
+	</csp:while>
+</table>
+
+<h1 align='center' id="Diplomer">Listing Diplômers</h1>
+
+		<csp:query name="query" classname="classeJulien.identiter" queryname="ParDiplome">
+<table class="tableau">
+	<tr>
+	<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+		<th align=left><b>#(query.GetColumnHeader(queryCol))#</b></th>
+	</csp:while>
+	</tr>
+
+	<csp:while counter=queryRow condition=query.Next()>
+	<tr class='#($S(queryRow#2:"DarkRow",1:"LightRow"))#' onClick="ouvreFiche('#(query.GetData(1))#')">
+	<script language="cache" runat="server">
+	set couleur=$lg(^classeJulien.identiterD(query.GetData(1)),9)
+	</script>
+		<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+			<td class="#(couleur)#" title="Plus d'info">#(query.GetData(queryCol))#</td>
+		</csp:while>
+	</tr>
+	</csp:while>
+</table>
+
+<h1 align='center' id="CA">Listing Membres CA</h1>
+
+		<csp:query name="query" classname="classeJulien.identiter" queryname="ParCA">
+<table class="portalTitleServerArchive">
+	<tr>
+	<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+		<th align=left><b>#(query.GetColumnHeader(queryCol))#</b></th>
+	</csp:while>
+	</tr>
+
+	<csp:while counter=queryRow condition=query.Next()>
+	<tr class='#($S(queryRow#2:"DarkRow",1:"LightRow"))#' style="cursor:hand;" onClick="ouvreFiche('#(query.GetData(1))#')">
+	<script language="cache" runat="server">
+	set couleur=$lg(^classeJulien.identiterD(query.GetData(1)),9)
+	</script>
+		<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+			<td class="#(couleur)#" title="Plus d'info" onclick="popupinfo('#(query.GetData(1))#')">#(query.GetData(queryCol))#</td>
+		</csp:while>
+	</tr>
+	</csp:while>
+</table>
+
+
+</body>
+<script language=javascript>
+function ouvreFiche(value)
+{
+	window.location="identiter.csp?OBJID="+value;
+}
+function popupinfo(OBJID)
+{
+	var url="popupinfo.csp?OBJID="+OBJID;
+	window.open(url,"popupinfo","top=200,left=400,width=500,height=500");
+}
+function sup(OBJID)
+{
+	if (confirm("suppression de ID "+OBJID)){
+		#server(..supid(OBJID))#;
+	}
+	window.location="identiter.CSP";
+}
+</script>
+
+<script language="cache" method="supid" arguments="OBJID">
+kill ^classeJulien.identiterD(OBJID)
+</script>
+
+</html>
+]]></CSP>
+
+
+<CSP name="index.csp" application="/csp/julien/" default="1"><![CDATA[
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Accés Intranet KWC</title>
+<link rel="icon" type="image/png" href="ig/logo.png" />
+<style>
+
+html, body
+{
+    height: 100%;
+}
+
+body
+{
+    font: 12px 'Lucida Sans Unicode', 'Trebuchet MS', Arial, Helvetica;    
+    margin: 0;
+    background-color: #d9dee2;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ebeef2), to(#d9dee2));
+    background-image: -webkit-linear-gradient(top, #ebeef2, #d9dee2);
+    background-image: -moz-linear-gradient(top, #ebeef2, #d9dee2);
+    background-image: -ms-linear-gradient(top, #ebeef2, #d9dee2);
+    background-image: -o-linear-gradient(top, #ebeef2, #d9dee2);
+    background-image: linear-gradient(top, #ebeef2, #d9dee2);    
+	background: #A0B0C0 url(./images/IMG_9344.JPG);
+	height:100%;
+	/*background-image:url("");*/
+	background-repeat:no-repeat;
+	background-position:center ;
+	min-height: 100%;
+	/*background-size: 80% 100%;*/
+	background-size: 90% 90%;
+
+}
+
+/*--------------------*/
+
+#login
+{
+    background-color: #fff;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
+    background-image: -webkit-linear-gradient(top, #fff, #eee);
+    background-image: -moz-linear-gradient(top, #fff, #eee);
+    background-image: -ms-linear-gradient(top, #fff, #eee);
+    background-image: -o-linear-gradient(top, #fff, #eee);
+    background-image: linear-gradient(top, #fff, #eee);  
+    height: 240px;
+    width: 400px;
+    margin: -150px 0 0 -230px;
+    padding: 30px;
+    position: absolute;
+    top: 62%;
+    left: 50%;
+    z-index: 0;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;  
+    -webkit-box-shadow:
+          0 0 2px rgba(0, 0, 0, 0.2),
+          0 1px 1px rgba(0, 0, 0, .2),
+          0 3px 0 #fff,
+          0 4px 0 rgba(0, 0, 0, .2),
+          0 6px 0 #fff,  
+          0 7px 0 rgba(0, 0, 0, .2);
+    -moz-box-shadow:
+          0 0 2px rgba(0, 0, 0, 0.2),  
+          1px 1px   0 rgba(0,   0,   0,   .1),
+          3px 3px   0 rgba(255, 255, 255, 1),
+          4px 4px   0 rgba(0,   0,   0,   .1),
+          6px 6px   0 rgba(255, 255, 255, 1),  
+          7px 7px   0 rgba(0,   0,   0,   .1);
+    box-shadow:
+          0 0 2px rgba(0, 0, 0, 0.2),  
+          0 1px 1px rgba(0, 0, 0, .2),
+          0 3px 0 #fff,
+          0 4px 0 rgba(0, 0, 0, .2),
+          0 6px 0 #fff,  
+          0 7px 0 rgba(0, 0, 0, .2);
+}
+
+#login:before
+{
+    content: '';
+    position: absolute;
+    z-index: -1;
+    border: 1px dashed #ccc;
+    top: 5px;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+    -moz-box-shadow: 0 0 0 1px #fff;
+    -webkit-box-shadow: 0 0 0 1px #fff;
+    box-shadow: 0 0 0 1px #fff;
+}
+
+/*--------------------*/
+
+h1
+{
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(0, 0, 0, .5);
+    text-transform: uppercase;
+    text-align: center;
+    color: #666;
+    margin: 0 0 30px 0;
+    letter-spacing: 4px;
+    font: normal 26px/1 Verdana, Helvetica;
+    position: relative;
+}
+
+h1:after, h1:before
+{
+    background-color: #777;
+    content: "";
+    height: 1px;
+    position: absolute;
+    top: 15px;
+    width: 120px;   
+}
+
+h1:after
+{ 
+    background-image: -webkit-gradient(linear, left top, right top, from(#777), to(#fff));
+    background-image: -webkit-linear-gradient(left, #777, #fff);
+    background-image: -moz-linear-gradient(left, #777, #fff);
+    background-image: -ms-linear-gradient(left, #777, #fff);
+    background-image: -o-linear-gradient(left, #777, #fff);
+    background-image: linear-gradient(left, #777, #fff);      
+    right: 0;
+}
+
+h1:before
+{
+    background-image: -webkit-gradient(linear, right top, left top, from(#777), to(#fff));
+    background-image: -webkit-linear-gradient(right, #777, #fff);
+    background-image: -moz-linear-gradient(right, #777, #fff);
+    background-image: -ms-linear-gradient(right, #777, #fff);
+    background-image: -o-linear-gradient(right, #777, #fff);
+    background-image: linear-gradient(right, #777, #fff);
+    left: 0;
+}
+
+/*--------------------*/
+
+fieldset
+{
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+/*--------------------*/
+
+#inputs input
+{
+    background: #f1f1f1 url(/dist/uploads/2011/09/login-sprite.png) no-repeat;
+    padding: 15px 15px 15px 30px;
+    margin: 0 0 10px 0;
+    width: 353px; /* 353 + 2 + 45 = 400 */
+    border: 1px solid #ccc;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+    -webkit-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+    box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+}
+
+#username
+{
+    background-position: 5px -2px !important;
+}
+
+#password
+{
+    background-position: 5px -52px !important;
+}
+
+#inputs input:focus
+{
+    background-color: #fff;
+    border-color: #e8c291;
+    outline: none;
+    -moz-box-shadow: 0 0 0 1px #e8c291 inset;
+    -webkit-box-shadow: 0 0 0 1px #e8c291 inset;
+    box-shadow: 0 0 0 1px #e8c291 inset;
+}
+
+/*--------------------*/
+#actions
+{
+    margin: 25px 0 0 0;
+}
+
+#submit
+{		
+    background-color: #ffb94b;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#fddb6f), to(#ffb94b));
+    background-image: -webkit-linear-gradient(top, #fddb6f, #ffb94b);
+    background-image: -moz-linear-gradient(top, #fddb6f, #ffb94b);
+    background-image: -ms-linear-gradient(top, #fddb6f, #ffb94b);
+    background-image: -o-linear-gradient(top, #fddb6f, #ffb94b);
+    background-image: linear-gradient(top, #fddb6f, #ffb94b);
+    
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    
+     -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+     -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+     box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;    
+    
+    border-width: 1px;
+    border-style: solid;
+    border-color: #d69e31 #e3a037 #d5982d #e3a037;
+
+    float: left;
+    height: 35px;
+    padding: 0;
+    width: 120px;
+    cursor: pointer;
+    font: bold 15px Arial, Helvetica;
+    color: #8f5a0a;
+}
+
+#submit:hover,#submit:focus
+{		
+    background-color: #fddb6f;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ffb94b), to(#fddb6f));
+    background-image: -webkit-linear-gradient(top, #ffb94b, #fddb6f);
+    background-image: -moz-linear-gradient(top, #ffb94b, #fddb6f);
+    background-image: -ms-linear-gradient(top, #ffb94b, #fddb6f);
+    background-image: -o-linear-gradient(top, #ffb94b, #fddb6f);
+    background-image: linear-gradient(top, #ffb94b, #fddb6f);
+}	
+
+#submit:active
+{		
+    outline: none;
+   
+     -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+     -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;		
+}
+
+#submit::-moz-focus-inner
+{
+  border: none;
+}
+
+#actions a
+{
+    color: #3151A2;    
+    float: right;
+    line-height: 35px;
+    margin-left: 10px;
+}
+
+/*--------------------*/
+
+#back
+{
+    display: block;
+    text-align: center;
+    position: relative;
+    top: 60px;
+    color: #999;
+}
+
+</style>
+
+</head>
+  <script language="JavaScript">
+
+function Resizingintherain(windowLarg,windowHaut)
+
+{
+
+top.window.resizeTo(windowLarg,windowHaut);
+
+}
+</script>
+<body onLoad="Resizingintherain(2000,1500);">
+	<center>
+	<br>
+	<img width="834" height="512" src="./ig/fond.jpg"/>
+<div>
+
+<form id="login" name="form">
+    <h1>Accés Intranet KWC</h1>
+    <fieldset id="inputs">
+        <input id="username" type="text" name="field1" placeholder="Identifiant:"  autofocus  >   
+        <input id="password" type="password" name="field2" placeholder="Mot De Passe: " onchange="envoieUser();">
+    </fieldset>
+        			<legend>Copyright: - <a href="mailto:julien-foy@laposte.net">Mot de passe Oublié?</a>
+ 	<!--<csp:if condition=+$H=66556>
+<br>
+<h3> IMPORTANT !!
+<b>UNE MISE A JOUR SERA FAITE AUJOURD'HUI LE 26/06/2023 A 19H00</b>
+<br>
+</h3>
+</csp:if>-->
+       			
+</legend>
+
+</form>
+</div>
+<div>
+
+</div>
+<script language="javascript">
+function envoieUser()
+	{
+			var value1=self.document.form.field1.value;
+			var value2=self.document.form.field2.value;
+
+
+		if (value1=="") {
+			alert("Code Utilisateur Non Renseigné")
+			window.location.reload();
+		}
+		else {
+		var id=#server(..controlUser(value1, value2))#;
+			if (id==0)
+			{
+				alert("Identifiants ou Mot de passe Incorrects");
+				window.location.reload();
+			}
+		
+			else { 
+			var url=#server(..pageurl(id))#;
+			window.location=url
+		}
+		}
+	}
+
+</script>
+<script language="cache" method="control" arguments="user,mp">
+	S session="" F {
+		S session=$O(%session.Data(session)) Q:session=""
+		K %session.Data(session)
+	}
+	set menu02Actif = "0",status=0
+	if $G(user)'=""
+	{
+		set REMOTEIP=$G(%request.CgiEnvs("REMOTE_ADDR"))
+		set %session.Data("Localisation")=REMOTEIP
+		set ^connectionUser(user,$H)=$G(^connectionUser(user,+$H))+1_"\"_REMOTEIP
+	}
+	Q status
+</script>
+<script language="cache" method="pageurl" arguments="id">
+S url=0
+K %session.Data("video")
+
+set %session.Data("user")=$LG(^classeJulien.utilisateurD(id),4)_"\"_$LG(^classeJulien.utilisateurD(id),2)_"\"_$LG(^classeJulien.utilisateurD(id),6)
+S url="EnTeteKWC.csp"
+Q url
+
+</script>
+
+<script language="cache" method="controlMp" arguments="value">
+S status=0
+S user=$G(^atpghiclMP(value))
+	if $G(user)'=""
+	{
+		S session="" F {
+		S session=$O(%session.Data(session)) Q:session=""
+		K %session.Data(session)
+		}
+		I $G(^atpghiclUser(user))'="" {
+		I $P(^atpghiclUser(user),"\",1)>+$H {
+		set status=user	
+		S nom=$P(^atpghiclUser(user),"\",3)
+		S prenom=$P(^atpghiclUser(user),"\",4)
+		set REMOTEIP=$G(%request.CgiEnvs("REMOTE_ADDR"))
+		set %session.Data("Localisation")=REMOTEIP
+		set ^connectionUser(user)=$G(^connectionUser(user))+1
+		set ^connectionUser(user,+$H)=$G(^connectionUser(user,+$H))+1_"\"_REMOTEIP_"\"_nom_"\"_prenom
+		set %session.Data("user")=status
+ 		S codeacces="GSA"_status
+ 		S valcodeacces=$P($G(^zenGSA("zengsa",codeacces)),"\",3)
+		 S:valcodeacces'="" %session.Data("codezengsa")=valcodeacces,status=2
+		}
+		Else {
+			S status=2
+		}
+		}
+	}
+
+	Q status
+</script>
+<script language="cache" method="controlUser" arguments="user,mp">
+	;&js<alert (#(user)# +" "+ #(mp)#)>
+	K %session.Data("user")
+	S status=##class(classeJulien.utilisateur).usermp(user,mp)
+	Q status
+
+</script>
+
+</body>
+</html>
+]]></CSP>
+
+
+<CSP name="listCA.csp" application="/csp/julien/" default="1"><![CDATA[
+<html>
+<head>
+
+<!-- Put your page Title here -->
+<title>	Cache Server Page </title>
+
+</head>
+
+<body>
+<center>
+<h1 align='center' id="TotalMembres">Membre du CA</h1>
+
+		<csp:query name="query" classname="classeJulien.identiter" queryname="ParCA">
+<table class="portalTitleServerArchive">
+	<tr class="finderItemSelected">
+	<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+		<th align=left><b>#(query.GetColumnHeader(queryCol))#</b></th>
+	</csp:while>
+	</tr>
+	<script language="cache" runat="server">
+		set nolig=0
+	</script>
+	<csp:while counter=queryRow condition=query.Next()>
+	<script language="cache" runat="server">
+	;set couleur=$lg(^classeJulien.identiterD(query.GetData(1)),9)
+	set nolig=nolig+1
+	set class=$SELECT(nolig#2=0:"tnbrTablelig1",1:"tnbrTablelig2")
+	</script>
+	<tr class="#(class)#" onClick="ouvreFiche('#(query.GetData(1))#')">
+		<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+			<td title="Modifier">#(query.GetData(queryCol))#</td>
+		</csp:while>
+	</tr>
+	</csp:while>
+</table>
+
+</body>
+</html>
+]]></CSP>
+
+
+<CSP name="listDiplomer.csp" application="/csp/julien/" default="1"><![CDATA[
+<html>
+<head>
+
+<!-- Put your page Title here -->
+<title>	Cache Server Page </title>
+
+</head>
+
+<body>
+<center>
+<h1 align='center' id="TotalMembres">Listing Diplômers</h1>
+
+		<csp:query name="query" classname="classeJulien.identiter" queryname="ParDiplome">
+<table class="portalTitleServerArchive">
+	<tr class="finderItemSelected">
+	<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+		<th align=left><b>#(query.GetColumnHeader(queryCol))#</b></th>
+	</csp:while>
+	</tr>
+	<script language="cache" runat="server">
+		set nolig=0
+	</script>
+	<csp:while counter=queryRow condition=query.Next()>
+	<script language="cache" runat="server">
+	;set couleur=$lg(^classeJulien.identiterD(query.GetData(1)),9)
+	set nolig=nolig+1
+	set class=$SELECT(nolig#2=0:"tnbrTablelig1",1:"tnbrTablelig2")
+	</script>
+	<tr class="#(class)#" onClick="ouvreFiche('#(query.GetData(1))#')">
+		<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+			<td title="Modifier">#(query.GetData(queryCol))#</td>
+		</csp:while>
+	</tr>
+	</csp:while>
+</table>
+
+</body>
+</html>
+]]></CSP>
+
+
+<CSP name="listMembre.csp" application="/csp/julien/" default="1"><![CDATA[
+<html>
+<head>
+
+<!-- Put your page Title here -->
+<title>	Liste Membre </title>
+
+</head>
+
+<body>
+<center>
+<h1 align='center' id="TotalMembres">Listing Total Des Membres</h1>
+
+		<csp:query name="query" classname="classeJulien.identiter" queryname="ParNom">
+<table class="portalTitleServerArchive">
+	<tr class="finderItemSelected">
+	<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+		<th align=left><b>#(query.GetColumnHeader(queryCol))#</b></th>
+	</csp:while>
+	</tr>
+	<script language="cache" runat="server">
+		set nolig=0
+	</script>
+	<csp:while counter=queryRow condition=query.Next()>
+	<script language="cache" runat="server">
+	;set couleur=$lg(^classeJulien.identiterD(query.GetData(1)),9)
+	set nolig=nolig+1
+	set class=$SELECT(nolig#2=0:"tnbrTablelig1",1:"tnbrTablelig2")
+	</script>
+	<tr class="#(class)#" onClick="ouvreFiche('#(query.GetData(1))#')">
+		<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+			<td title="Modifier">#($ZCONVERT(query.GetData(queryCol),"U"))#</td>
+		</csp:while>
+	</tr>
+	</csp:while>
+</table>
+
+</body>
+</html>
+]]></CSP>
+
+
+<CSP name="listPG.csp" application="/csp/julien/" default="1"><![CDATA[
+<html>
+<head>
+
+<!-- Put your page Title here -->
+<title>	Liste Membre pas Pagaie Couleur </title>
+
+</head>
+
+<body>
+<center>
+<h1 align='center' id="TotalMembres"><FONT size="10pt"><U>Listing Par Pagaie Couleur :</U></FONT></h1>
+<br>
+
+<head>
+        <meta charset="utf-8">
+        <title>Aller au tableau:</title>
+        <link rel="stylesheet" href="menu3.css">
+    </head>
+    <body>
+     
+        <div class="cadre">
+            <span class="cadre">Aller au tableau des personnes:</span>
+            <a href="#sans">Sans Pagaie Couleur</a>
+            <a href="#blanche">Pagaie Blanche</a>
+            <a href="#jaune">Pagaie Jaune</a>
+            <a href="#verte">Pagaie Verte</a>
+            <a href="#bleue">Pagaie Bleue</a>
+            <a href="#rouge">Pagaie Rouge</a>
+            <a href="#noire">Pagaie Noire</a>
+            <a href="#tous">Afficher tous les niveaux</a>
+        </div>
+         
+    </body>
+<br>
+<hr>
+
+<div id="sans">
+<h1 align='center' id="TotalMembres">Membre Sans Pagaie Couleur</h1>
+
+		<csp:query name="query" classname="classeJulien.identiter" queryname="ParSPG">
+<table class="portalTitleServerArchive">
+	<tr class="finderItemSelected">
+	<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+		<th align=left><b>#(query.GetColumnHeader(queryCol))#</b></th>
+	</csp:while>
+	</tr>
+	<script language="cache" runat="server">
+		set nolig=0
+	</script>
+	<csp:while counter=queryRow condition=query.Next()>
+	<script language="cache" runat="server">
+	;set couleur=$lg(^classeJulien.identiterD(query.GetData(1)),9)
+	set nolig=nolig+1
+	set class=$SELECT(nolig#2=0:"tnbrTablelig1",1:"tnbrTablelig2")
+	</script>
+	<tr class="#(class)#" onClick="ouvreFiche('#(query.GetData(1))#')">
+		<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+			<td title="Plus d'Information"  onclick="popupinfo('#(query.GetData(1))#')">#($ZCONVERT(query.GetData(queryCol),"U"))#</td>
+		</csp:while>
+	</tr>
+	</csp:while>
+</table>
+<p>
+Si vous rencontrez un problèmes avec le tableau ci-dessus, merci de nous le faire parvenir l'information par <a href="mailto:julien-foy@laposte.net">mail</a>
+</p>
+</div>
+<br>
+<hr>
+
+<div id="blanche">
+<h1 align='center' id="TotalMembres">Membre Pagaie Blanche</h1>
+
+		<csp:query name="query" classname="classeJulien.identiter" queryname="ParPGBlanche">
+<table class="portalTitleServerArchive">
+	<tr class="finderItemSelected">
+	<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+		<th align=left><b>#(query.GetColumnHeader(queryCol))#</b></th>
+	</csp:while>
+	</tr>
+	<script language="cache" runat="server">
+		set nolig=0
+	</script>
+	<csp:while counter=queryRow condition=query.Next()>
+	<script language="cache" runat="server">
+	;set couleur=$lg(^classeJulien.identiterD(query.GetData(1)),9)
+	set nolig=nolig+1
+	set class=$SELECT(nolig#2=0:"tnbrTablelig1",1:"tnbrTablelig2")
+	</script>
+	<tr class="#(class)#" onClick="ouvreFiche('#(query.GetData(1))#')">
+		<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+			<td title="Plus d'Information"  onclick="popupinfo('#(query.GetData(1))#')">#($ZCONVERT(query.GetData(queryCol),"U"))#</td>
+		</csp:while>
+	</tr>
+	</csp:while>
+</table>
+<p>
+Si vous rencontrez un problèmes avec le tableau ci-dessus, merci de nous le faire parvenir l'information par <a href="mailto:julien-foy@laposte.net">mail</a>
+</p>
+</div>
+<br>
+<hr>
+
+<div id="jaune">
+<h1 align='center' id="TotalMembres" style="color:yellow;">Membre Pagaie Jaune</h1>
+
+		<csp:query name="query" classname="classeJulien.identiter" queryname="ParPGJaune">
+<table class="portalTitleServerArchive">
+	<tr class="finderItemSelected">
+	<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+		<th align=left><b>#(query.GetColumnHeader(queryCol))#</b></th>
+	</csp:while>
+	</tr>
+	<script language="cache" runat="server">
+		set nolig=0
+	</script>
+	<csp:while counter=queryRow condition=query.Next()>
+	<script language="cache" runat="server">
+	;set couleur=$lg(^classeJulien.identiterD(query.GetData(1)),9)
+	set nolig=nolig+1
+	set class=$SELECT(nolig#2=0:"tnbrTablelig1",1:"tnbrTablelig2")
+	</script>
+	<tr class="#(class)#" onClick="ouvreFiche('#(query.GetData(1))#')">
+		<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+			<td title="Plus d'Information"  onclick="popupinfo('#(query.GetData(1))#')">#($ZCONVERT(query.GetData(queryCol),"U"))#</td>
+		</csp:while>
+	</tr>
+	</csp:while>
+</table>
+<p>
+Si vous rencontrez un problèmes avec le tableau ci-dessus, merci de nous le faire parvenir l'information par <a href="mailto:julien-foy@laposte.net">mail</a>
+</p>
+</div>
+<br>
+<hr>
+
+<div id="verte">
+<h1 align='center' id="TotalMembres" style="color:green;">Membre Pagaie Vert</h1>
+
+		<csp:query name="query" classname="classeJulien.identiter" queryname="ParPGVert">
+<table class="portalTitleServerArchive">
+	<tr class="finderItemSelected">
+	<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+		<th align=left><b>#(query.GetColumnHeader(queryCol))#</b></th>
+	</csp:while>
+	</tr>
+	<script language="cache" runat="server">
+		set nolig=0
+	</script>
+	<csp:while counter=queryRow condition=query.Next()>
+	<script language="cache" runat="server">
+	;set couleur=$lg(^classeJulien.identiterD(query.GetData(1)),9)
+	set nolig=nolig+1
+	set class=$SELECT(nolig#2=0:"tnbrTablelig1",1:"tnbrTablelig2")
+	</script>
+	<tr class="#(class)#" onClick="ouvreFiche('#(query.GetData(1))#')">
+		<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+			<td title="Plus d'Information"  onclick="popupinfo('#(query.GetData(1))#')">#($ZCONVERT(query.GetData(queryCol),"U"))#</td>
+		</csp:while>
+	</tr>
+	</csp:while>
+</table>
+<p>
+Si vous rencontrez un problèmes avec le tableau ci-dessus, merci de nous le faire parvenir l'information par <a href="mailto:julien-foy@laposte.net">mail</a>
+</p>
+</div>
+<br>
+<hr>
+
+<div id="bleue">
+<h1 align='center' id="TotalMembres" style="color:blue;">Membre Pagaie Bleue</h1>
+
+		<csp:query name="query" classname="classeJulien.identiter" queryname="ParPGBleue">
+<table class="portalTitleServerArchive">
+	<tr class="finderItemSelected">
+	<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+		<th align=left><b>#(query.GetColumnHeader(queryCol))#</b></th>
+	</csp:while>
+	</tr>
+	<script language="cache" runat="server">
+		set nolig=0
+	</script>
+	<csp:while counter=queryRow condition=query.Next()>
+	<script language="cache" runat="server">
+	;set couleur=$lg(^classeJulien.identiterD(query.GetData(1)),9)
+	set nolig=nolig+1
+	set class=$SELECT(nolig#2=0:"tnbrTablelig1",1:"tnbrTablelig2")
+	</script>
+	<tr class="#(class)#" onClick="ouvreFiche('#(query.GetData(1))#')">
+		<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+			<td title="Plus d'Information"  onclick="popupinfo('#(query.GetData(1))#')">#($ZCONVERT(query.GetData(queryCol),"U"))#</td>
+		</csp:while>
+	</tr>
+	</csp:while>
+</table>
+<p>
+Si vous rencontrez un problèmes avec le tableau ci-dessus, merci de nous le faire parvenir l'information par <a href="mailto:julien-foy@laposte.net">mail</a>
+</p>
+</div>
+<br>
+<hr>
+
+<div id="rouge">
+<h1 align='center' id="TotalMembres" style="color:red;">Membre Pagaie Rouge</h1>
+
+		<csp:query name="query" classname="classeJulien.identiter" queryname="ParPGRouge">
+<table class="portalTitleServerArchive">
+	<tr class="finderItemSelected">
+	<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+		<th align=left><b>#(query.GetColumnHeader(queryCol))#</b></th>
+	</csp:while>
+	</tr>
+	<script language="cache" runat="server">
+		set nolig=0
+	</script>
+	<csp:while counter=queryRow condition=query.Next()>
+	<script language="cache" runat="server">
+	;set couleur=$lg(^classeJulien.identiterD(query.GetData(1)),9)
+	set nolig=nolig+1
+	set class=$SELECT(nolig#2=0:"tnbrTablelig1",1:"tnbrTablelig2")
+	</script>
+	<tr class="#(class)#" onClick="ouvreFiche('#(query.GetData(1))#')">
+		<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+			<td title="Plus d'Information"  onclick="popupinfo('#(query.GetData(1))#')">#($ZCONVERT(query.GetData(queryCol),"U"))#</td>
+		</csp:while>
+	</tr>
+	</csp:while>
+</table>
+<p>
+Si vous rencontrez un problèmes avec le tableau ci-dessus, merci de nous le faire parvenir l'information par <a href="mailto:julien-foy@laposte.net">mail</a>
+</p>
+</div>
+<br>
+<hr>
+
+<div id="noire">
+<h1 align='center' id="TotalMembres" >Membre Pagaie Noir</h1>
+
+		<csp:query name="query" classname="classeJulien.identiter" queryname="ParPGNoir">
+<table class="portalTitleServerArchive">
+	<tr class="finderItemSelected">
+	<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+		<th align=left><b>#(query.GetColumnHeader(queryCol))#</b></th>
+	</csp:while>
+	</tr>
+	<script language="cache" runat="server">
+		set nolig=0
+	</script>
+	<csp:while counter=queryRow condition=query.Next()>
+	<script language="cache" runat="server">
+	;set couleur=$lg(^classeJulien.identiterD(query.GetData(1)),9)
+	set nolig=nolig+1
+	set class=$SELECT(nolig#2=0:"tnbrTablelig1",1:"tnbrTablelig2")
+	</script>
+	<tr class="#(class)#" onClick="ouvreFiche('#(query.GetData(1))#')">
+		<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+			<td title="Plus d'Information" onclick="popupinfo('#(query.GetData(1))#')">#($ZCONVERT(query.GetData(queryCol),"U"))#</td>
+		</csp:while>
+	</tr>
+	</csp:while>
+</table>
+<p>
+Si vous rencontrez un problèmes avec le tableau ci-dessus, merci de nous le faire parvenir l'information par <a href="mailto:julien-foy@laposte.net">mail</a>
+</p>
+</div>
+
+
+</body>
+
+<script language=javascript>
+function popupinfo(OBJID)
+{
+	var url="popupinfo.csp?OBJID="+OBJID;
+	window.open(url,"popupinfo","top=300,left=600,width=600,height=600");
+}
+</script>
+
+<script language="cache" method="supid" arguments="OBJID">
+kill ^classeJulien.identiterD(OBJID)
+</script>
+
+</html>
+]]></CSP>
+
+
+<CSP name="listPGEric.csp" application="/csp/julien/" default="1"><![CDATA[
+<html>
+<head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="menu3.css">
+    </head>
+
+<body>
+<center>
+
+<h1 align='center' id="TotalMembres"><FONT size="10pt"><U>Listing Par Pagaie Couleur :</U></FONT></h1>
+<br>
+
+     
+       
+        <SELECT class="#(commandButtonR)#" name="pagaie" onChange="ouvreSelectPagaie(this.value)" id="pagaie">
+            <Option value="">Afficher tous les niveaux</Option>
+            <Option value="ParSPG,7">Sans Pagaie Couleur</Option>
+            <Option value="ParPGBlanche,3">Pagaie Blanche</Option>
+            <Option value="ParPGJaune,1">Pagaie Jaune</Option>
+            <Option value="ParPGVert,2">Pagaie Verte</Option>
+            <Option value="ParPGBleue,4">Pagaie Bleue</Option>
+            <Option value="ParPGRouge,5">Pagaie Rouge</Option>
+            <Option value="ParPGNoir,6">Pagaie Noire</Option>
+            </SELECT>
+        
+         
+<br>
+<hr>
+<script language="cache" runat="server">
+set resRequest=$G( %session.Data("pagaie"))
+set couleur=$piece(resRequest,",",1)
+set donneCouleur=$piece(resRequest,",",2)
+
+if donneCouleur'=""{
+	set titre=$lg(^classeJulien.couleurTitrePGD(donneCouleur),3)
+	set color=$lg(^classeJulien.couleurTitrePGD(donneCouleur),4)
+
+}
+</script>
+
+<csp:if condition=couleur'="">
+<div id="sans">
+<h1 align='center' id="TotalMembres" style="color:#(color)#;">#($g(titre))#</h1>
+<table class="portalTitleServerArchive">
+
+		<csp:query name="query" classname="classeJulien.identiter" queryname="#(couleur)#">
+	<tr class="finderItemSelected">
+	<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+		<th align=left><b>#(query.GetColumnHeader(queryCol))#</b></th>
+	</csp:while>
+	</tr>
+	<script language="cache" runat="server">
+		set nolig=0
+	</script>
+	<csp:while counter=queryRow condition=query.Next()>
+	
+	<script language="cache" runat="server">
+	;set couleur=$lg(^classeJulien.identiterD(query.GetData(1)),9)
+	set nolig=nolig+1
+	set class=$SELECT(nolig#2=0:"tnbrTablelig1",1:"tnbrTablelig2")
+	</script>
+	
+	<tr class="#(class)#" onClick="ouvreFiche('#(query.GetData(1))#')">
+		<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+			<td title="Plus d'Information"  onclick="popupinfo('#(query.GetData(1))#')">#($ZCONVERT(query.GetData(queryCol),"U"))#</td>
+		</csp:while>
+	</tr>
+	</csp:while>
+</table>
+<p>
+Si vous rencontrez un problèmes avec le tableau ci-dessus, merci de nous le faire parvenir l'information par <a href="mailto:julien-foy@laposte.net">mail</a>
+</p>
+</div>
+</csp:if>
+<br>
+</body>
+
+<script language=javascript>
+function popupinfo(OBJID)
+{
+	var url="popupinfo.csp?OBJID="+OBJID;
+	window.open(url,"popupinfo","top=200,left=400,width=500,height=500");
+}
+function ouvreSelectPagaie(value)
+{
+	#server(..sessionpagaie(value))#;
+	window.location.reload();
+}
+</script>
+
+<script language="cache" method="supid" arguments="OBJID">
+kill ^classeJulien.identiterD(OBJID)
+</script>
+<script language="cache" method="sessionpagaie" arguments="value">
+set %session.Data("pagaie")=value
+</script>
+
+</html>
+]]></CSP>
+
+
+<CSP name="listutilisateur.csp" application="/csp/julien/" default="1"><![CDATA[
+<html>
+<head>
+
+<!-- Put your page Title here -->
+<title>	Cache Server Page </title>
+
+</head>
+
+<body>
+<center>
+<h1 align='center' id="TotalMembres">Listing Utilisateurs</h1>
+
+<a><u>Information:</u></a>
+<table class="tnbrTable">
+      <tr class="finderItemSelected">
+        <th>Chiffre</th>
+        <th>Droit</th>
+      </tr>
+      <tr >
+        <td>1</td>
+        <td>Visionneur</td>
+      </tr>
+      <tr class="finderItemSelected">
+        <td>2</td>
+        <td>Membre</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Cadres</td>
+      </tr>
+      <tr class="finderItemSelected">
+        <td>4</td>
+        <td>Admin</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Super Admin</td>
+      </tr>
+    </table>
+    <br>
+
+
+		<csp:query name="query" classname="classeJulien.utilisateur" queryname="ParUtilisateur">
+<table class="portalTitleServerArchive">
+	<tr class="finderItemSelected">
+	<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+		<th align=left><b>#(query.GetColumnHeader(queryCol))#</b></th>
+	</csp:while>
+	</tr>
+	<script language="cache" runat="server">
+		set nolig=0
+	</script>
+	<csp:while counter=queryRow condition=query.Next()>
+	<script language="cache" runat="server">
+	;set couleur=$lg(^classeJulien.utilisateurD(query.GetData(1)),9)
+	set nolig=nolig+1
+	set class=$SELECT(nolig#2=0:"tnbrTablelig1",1:"tnbrTablelig2")
+	</script>
+	<tr   onClick="ouvreFiche('#(query.GetData(1))#')">
+		<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+			<td title="Modifier">#(query.GetData(queryCol))#</td>
+		</csp:while>
+	</tr>
+	</csp:while>
+</table>
+
+</body>
+</html>]]></CSP>
+
+
+<CSP name="popupinfo.csp" application="/csp/julien/" default="1"><![CDATA[
+<html>
+<head>
+
+<!-- Put your page Title here -->
+<title>	Information Supplémentaire </title>
+<link rel="icon" type="image/png" href="ig/logo.png" />
+<csp:include page="StyleCssNew.csp">
+
+</head>
+
+<script language="cache" runat="server">
+set commandButtonR="commandButton"
+</script>
+
+<body>
+<script language="cache" runat="server">
+set OBJID=%request.Get("OBJID")
+set couleur=""
+I OBJID'="" {
+	S %session.Data("OBJID")=OBJID
+	set idPhoto=$piece($G(^zenPhoto("idPhoto", OBJID)),"~",1)
+}
+</script>
+
+<center>
+
+		<!-- Put your page code here -->
+<h1 align='center' id="CA">Information Complémentaire :</h1>
+
+<table class="tableau">
+<!--<csp:object name='objForm' classname='classeJulien.identiter' OBJID='#($G(%session.Data("OBJID")))#'>-->
+<script language="cache" runat="server">
+S id = $G(%session.Data("OBJID"))
+if id '= "" {
+S nom=$LG(^classeJulien.identiterD(id),2)
+S prenom=$LG(^classeJulien.identiterD(id),3)
+S adresse=$LG(^classeJulien.identiterD(id),4)
+S telephone=$LG(^classeJulien.identiterD(id),5)
+S dateDeNaissance=$LG(^classeJulien.identiterD(id),6)
+S sexe=$LG(^classeJulien.identiterD(id),7)
+S mail=$LG(^classeJulien.identiterD(id),8)
+S pagaieCouleur=$LG(^classeJulien.identiterD(id),9)
+S numLicence=$LG(^classeJulien.identiterD(id),10)
+S diplome=$LG(^classeJulien.identiterD(id),11)
+S CA=$LG(^classeJulien.identiterD(id),12)
+}
+</script>
+
+<script language="cache" runat="server">
+set commandButtonR="commandButton"
+S droit=$P($G(%session.Data("user")),"\",3)
+</script>
+
+<form name='form' action="popuinfo.csp" method="post">
+<center>
+
+<p>
+	<csp:if condition=$G(idPhoto)'="">
+					<csp:if condition=$G(^Test.FileHolderD(idPhoto))'="">
+					<div class="zoom">
+					<embed src="Test.GetFileG.cls?OBJID=#(idPhoto)#"></embed>
+					</div>
+					</csp:if>
+				</csp:if>
+	<br>
+	<!--<input type="file" id="imageFile" name="imageFile" accept="image/*">-->
+<csp:if condition="droit>3">
+	<input class="#(commandButtonR)#" type="button" id="imageFile" name="imageFile" value="Modifier Photo" onclick="importFichier('#($G(%session.Data("OBJID")))#')">
+</p>
+</csp:if>
+
+<table class="portalTitleServerArchive">
+	<tr class="finderItemSelected">
+		<td class="#(couleur)#"><b><div align='right'>Nom De Famille:</div></b></td>
+		<td>#(nom)#</td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='right'>Prénom:</div></b></td>
+		<td>#(prenom)# </td>
+	</tr>
+	<tr class="finderItemSelected">
+		<td class="#(couleur)#"><b><div align='right'>Date De Naissance:</div></b></td>
+		<td>#(dateDeNaissance)#</td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='right'>Sexe:</div></b></td>
+		<td>#(sexe)#</td>
+	</tr>
+	<tr class="finderItemSelected">
+		<td class="#(couleur)#"><b><div align='right'>Adresse:</div></b></td>
+		<td>#(adresse)#</td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='right'>Mail:</div></b></td>
+		<td>#(mail)#</td>
+	</tr>
+	<tr class="finderItemSelected">
+		<td class="#(couleur)#"><b><div align='right'>Téléphone:</div></b></td>
+		<td>#(telephone)#</td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='right'>Numéro de Licence:</div></b></td>
+		<td>#(numLicence)#</td>
+	</tr>
+	<tr class="finderItemSelected">
+		<td class="#(couleur)#"><b><div align='right'>Niveau:</div></b></td>
+		<td>#(pagaieCouleur)#</td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='right'>Diplôme:</div></b></td>
+		<td>#(diplome)#</td>
+	</tr>
+	<tr class="finderItemSelected">
+		<td class="#(couleur)#"><b><div align='right'>Membre du CA:</div></b></td>
+		<td>#(CA)#</td>
+	</tr>
+</table>
+</form>
+</table>
+</body>
+
+<script language=javascript>
+document.getElementById('imageFile').addEventListener('change', function(e) {
+  var file = e.target.files[0];
+  var reader = new FileReader();
+
+  reader.onload = function(e) {
+    document.getElementById('profilImage').src = e.target.result;
+  };
+
+  reader.readAsDataURL(file);
+});
+function importFichier (id){
+	var URL="zenPhoto.csp?OBJID="+id;
+	window.open(URL,"Photo","top=300,left=600,width=600,height=600");
+	
+}
+</script>
+
+</html>
+]]></CSP>
+
+
+<CSP name="recherche.csp" application="/csp/julien/" default="1"><![CDATA[
+<html>
+<head>
+
+<!-- Put your page Title here -->
+<title>	Cache Server Page </title>
+
+</head>
+
+<script language="cache" runat="server">
+set commandButtonR="commandButton"
+S droit=$P($G(%session.Data("user")),"\",3)
+</script>
+
+<body>
+<center>
+	<h1 align='center'><FONT size="10pt"><U>Que souhaitez-vous recherché ?:</U></FONT></h1>
+	
+	<!--<br>
+	<input class="#(commandButtonR)#" type="search" id="site-search" name="q" placeholder="Rechercher sur le site...">
+	<button class="#(commandButtonR)#">Rechercher</button>-->
+	
+	<br>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<div class="wrap">
+      <div class="search">
+        <input type="text" class="#(commandButtonR)#" placeholder="Tapez" onchange="rechercheMotCle(this.value)">
+        <button type="submit" class="#(commandButtonR)#">
+          <i class="fa fa-search"></i>
+        </button>
+        &nbsp;-&nbsp;
+        <button class="#(commandButtonR)#" onclick="reini();">Réinitialiser
+        </button>
+      </div>
+    </div>
+    <br>
+    <csp:if condition="droit>2">
+	    <csp:if condition = $D(%session.Data("res"))'=0>
+	    	<table>
+	    		<legend>Resultat De Recherche :</legend>
+	    		<script language="cache" runat="server">
+	    			set id=""
+	    			for {
+		    			set id=$order(%session.Data("res", id)) quit:id=""
+		    			set res=%session.Data("res", id)
+		    			&html<
+		    			<p>#($LG(res,2))# - #($LG(res,3))# &nbsp;_&nbsp; #($LG(res,4))# &nbsp;-&nbsp; #($LG(res,5))# &nbsp;-&nbsp; #($LG(res,6))# &nbsp;-&nbsp; #($LG(res,7))# &nbsp;-&nbsp; #($LG(res,8))# &nbsp;-&nbsp; #($LG(res,9))# &nbsp;-&nbsp; #($LG(res,10))# &nbsp;-&nbsp; #($LG(res,11))# &nbsp;-&nbsp; #($LG(res,14))#</p>
+		    			>
+	    			}
+	    		</script>
+	    	</table>
+	    </csp:if>
+	</csp:if>
+    <csp:if condition="droit<3">
+	    <csp:if condition = $D(%session.Data("res"))'=0>
+	    	<table>
+	    		<legend>Resultat De Recherche :</legend>
+	    		<script language="cache" runat="server">
+	    			set id=""
+	    			for {
+		    			set id=$order(%session.Data("res", id)) quit:id=""
+		    			set res=%session.Data("res", id)
+		    			&html<
+		    			<p>#($LG(res,2))# - #($LG(res,3))#</p>
+		    			>
+	    			}
+	    		</script>
+	    	</table>
+	    </csp:if>
+	</csp:if>
+
+
+<script language="javascript">
+function rechercheMotCle(value){
+	var status=#server(..recherche(value))#;
+	if (status == 0){
+		alert ("recherche négative")
+	}
+	else{
+		window.location.reload();
+	}
+}
+function reini(){
+	#server(..reini())#;
+	window.location.reload();
+}
+function popupinfo(OBJID)
+{
+	var url="popupinfo.csp?OBJID="+OBJID;
+	window.open(url,"popupinfo","top=200,left=400,width=500,height=500");
+}
+</script>
+<script language="cache" method="recherche" arguments="value">
+set id=""
+set value=$ZCONVERT(value,"U")
+set status=0
+for {
+	set id=$order(^classeJulien.identiterD(id)) quit:id=""
+	set res=$ZCONVERT(^classeJulien.identiterD(id),"U")
+	if res[value {
+		set %session.Data("res",id)=res
+		set status=1
+	}
+}
+quit status
+</script>
+<script language="cache" method="reini" arguments="">
+kill %session.Data("res")
+</script>
+
+</body>
+</html>
+]]></CSP>
+
+
+<CSP name="styleCSS.csp" application="/csp/julien/" default="1"><![CDATA[
+<style type="text/css">
+body {
+font-family: "Source Sans Pro",Futura,Arial,sans-serif;
+}
+.fondbleudegrade {
+  background: linear-gradient(#E0F2F7, white);
+}
+.fondvertdegrade {
+  background: linear-gradient(#F5FBEF, white);
+}
+p {
+	pading:0.2em;
+	text-indent:1em;
+}
+.ecart {
+	text-indent:20em;
+}
+.ex1 {
+  margin: auto;
+  background: gold;
+  width: 66%;
+}
+.locatorBarTable td {
+background: rgb(53,107,141);
+background-image: none;
+background-repeat: repeat-x;
+border-bottom: 1px darkblue solid;
+padding-bottom: 1px;
+color: white;
+}
+.locatorBarLinks {
+color: white;
+}
+.locatorBarLinks a {
+color: white;
+}
+.locatorBarLinks a:visited {
+color: white;
+}
+.locatorBarLinks a:hover {
+color: darkred;
+background: #FFFAE7;
+}
+.locatorBarSelect {
+color: white;
+}
+/* style for "Management Portal" */
+.portalName {
+color:#000000;
+font-family: Montserrat,Futura,Arial,sans-serif;
+font-size:18px;
+font-weight: bold;
+text-align:left;
+text-valign: middle;
+position: absolute;
+left: 300px;
+top: 20px;
+}
+.portalPropertyPanelTitle {
+color: white;
+font-size: 12pt;
+padding: 5px;
+}
+.portalPropertyPanelCommands {
+color: white;
+background: rgb(53,107,141);
+width: 100px;
+text-align: center;
+font-size: 9pt;
+border: 1px solid #CBCBCB;
+}
+.portalTitle {
+width: 100%;
+height: 35px;
+position: relative;
+box-shadow:0 2px 8px 0 rgba(0,0,0,0.50);
+/*box-sizing: border-box;*/
+padding: 3px 3px;
+
+}
+.portalTitleFiche {
+width: 100%;
+height: 55px;
+position: relative;
+box-shadow:0 2px 8px 0 rgba(0,0,0,0.50);
+box-sizing: border-box;
+padding: 3px 3px;
+
+}
+
+.portalTitleOrdo {
+width: 100%;
+height: 150px;
+/*box-shadow:0 1px 1px 0 rgba(0,0,0,0.50);*/
+position: relative;
+box-sizing: border-box;
+padding: 3px 3px;
+
+}
+
+.portalTitleInfoBox {
+left: 20px;
+position: absolute;
+top: 70px;
+width: 100%;
+box-shadow:0 2px 8px 4 rgba(0,0,0,0.12);
+}
+.portalTitleInfoLabel {
+font-family: SourceSansPro,Futura,Arial,sans-serif;
+font-size: 14px;
+font-weight: bold;
+color: #000000;
+padding: 2px 2px;
+}
+.portalTitleInfoVal {
+font-family: SourceSansPro,Futura,Arial,sans-serif;
+font-size: 14px;
+font-weight: 400;
+color: #000000;
+padding: 4px 12px 4px 2px;
+}
+.portalLostConnectivityWarn {
+font-family: SourceSansPro,Futura,Arial,sans-serif;
+font-size: 13px;
+font-weight: bold;
+letter-spacing: 0.75px;
+text-align: center;
+background: #aa4040;
+color:#ffffff;
+border-radius: 4px;
+padding: 6px 20px;
+margin-left: 20px;
+}
+.portalenteteonco {
+font-family: SourceSansPro,Futura,Arial,sans-serif;
+font-size: 10px;
+font-weight: bold;
+letter-spacing: 0.75px;
+text-align: center;
+background: rgb(53,107,141);
+color:#ffffff;
+border-radius: 4px;
+padding: 6px 20px;
+margin-left: 20px;
+}
+/* style to show "Development System" or "Live System", etc. */
+#portalServerFlag {
+float: left;
+}
+.portalTitleServerFlag {
+border: 2px solid #333695;
+border-radius: 4px;
+color: #000000;
+font-family: Montserrat,Futura,Arial,sans-serif;
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.75px;
+padding: 4px 20px;
+}
+.portalTitleServerFlagLive {
+color: #da4848;  /* red */
+border: 2px solid #da4848;
+}
+.portalTitleListBox {
+position: absolute;
+top: 5px;
+left: 20px;
+font-size: 9pt;
+}
+.portalTitleMenuBox {
+position: relative;
+top: 20px;
+left: 600px;
+font-size: 14px;
+}
+/* attemp to make small links and mainMenu not to overlap */
+#portalTitleMenuBox {
+position: absolute;
+left: 50%;
+min-width: 350px;
+}
+#mainMenu {
+position: absolute;
+left: 95%;
+top: 8px;
+}
+@media all and (max-width: 980px) {
+#portalTitleMenuBox {
+margin-left: 0px;
+left: 600px;
+}
+#mainMenu {
+margin-left: 0px;
+left: 1210px;
+}
+}
+.pageTitleText {
+color: #333695;
+font-family: "Source Sans Pro",Futura,Arial,sans-serif;
+font-size: 12px;
+font-weight: 550;
+text-docoration: none;
+}
+.portalTitleLink {
+color: #000000;
+font-family: "Source Sans Pro",Futura,Arial,sans-serif;
+font-size: 14px;
+font-weight: 600;
+padding: 2px;
+text-decoration: none;
+}
+.portalServerLink {
+color: #333695;
+font-family: "Source Sans Pro",Futura,Arial,sans-serif;
+font-size: 12px;
+font-weight: 550;
+text-decoration: underline;
+}
+.portalLocatorLink {
+text-decoration: none;
+}
+.portalTitleLink:hover,.portalServerLink:hover,.portalLocatorLink:hover {
+color: #00A09A;
+transition: color 0.03 ease;
+}
+.portalTitleTabBox {
+position: absolute;
+color: white;
+font-size: 16px;
+bottom: 0px;
+left: 20px;
+width: 300px;
+height: 25px;
+padding-left: 15px;
+padding-right: 15px;
+padding: 5px;
+border-top-right-radius: 5px;
+border-top-left-radius: 5px;
+overflow: hidden;
+}
+.portalLogoBox {
+position: absolute;
+top: 0px;
+padding: 3px;
+padding-bottom: 4px;
+padding-right: 15px;
+left: 10px;
+width:210px;
+z-index: 3;
+}
+.topLine {
+border-top: 2px solid #333695;
+}
+.portalLogo {
+position: relative;
+top: 0px;
+left: 10px;
+padding: 2px;
+padding-left: 5px;
+padding-right: 5px;
+width:210px;
+height:50px;
+font-weight: bold;
+font-size: 12pt;
+}
+/* overrides of Finder styles */
+.finderItemSelected {
+background: #bfe4e3;
+border: 1px solid #cbcbcb;
+color: #000000;
+}
+.finderItemSelected a {
+color: #000000;
+}
+.finderListRowSelected {
+background: #bfe4e3;  /*#2F6280;*/
+}
+.finderItem, .finderItemOdd,.finderItemSelected, .finderItemDisabled {
+border: 1px solid #CBCBCB;
+}
+/* command button styles */
+.commandButton,.commandButtonRemove,.commandButtonDisabled {
+color: #333695;
+cursor: pointer;
+background: #ffffff;
+border: 2px solid #333695;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 600;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+}
+.commandButtonRemove {
+background: #E5EFE8;
+color: #333695;
+border: 2px solid #E5EFE8;
+}
+.commandButtonDisabled {
+background: #ffffff;
+color: #979797;
+cursor: default;
+border: 2px solid #c5c5c5;
+}
+.commandButton:hover {
+border: 2px solid #00A09A;
+color: #00A09A;
+/*transition: color 0.03 ease;*/
+}
+.commandButtonRemove:hover {
+border: 2px solid white;
+}
+.commandButtonPetit {
+color: #000000;
+cursor: pointer;
+background: #C9E8E8;
+border: 2px solid #A9D8D8;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.55px;
+text-align: center;
+text-decoration: none;
+padding: 3px 5px;
+}
+.commandButtonPetit:hover {
+border: 2px solid #04AB20;
+color: #ffffff;
+/*transition: color 0.03 ease;*/
+background: #04AB20;
+}
+.commandButtonPetitJaune {
+color: #000000;
+cursor: pointer;
+background: #ffffc0;
+border: 2px solid #A9D8D8;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.55px;
+text-align: center;
+text-decoration: none;
+padding: 3px 5px;
+}
+.commandButtonPetitJaune:hover {
+border: 2px solid #04AB20;
+color: #ffffff;
+/*transition: color 0.03 ease;*/
+background: #04AB20;
+}
+
+.commandButtonImg {
+color: #333695;
+cursor: pointer;
+background: #ffffff;
+border: 0px ;
+border-radius: 4px;
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.75px;
+text-align: left;
+text-decoration: none;
+padding: 4px 10px;
+}
+.commandButtonLigne {
+color: #333695;
+cursor: pointer;
+background: #ffffff;
+border: 0px ;
+border-radius: 4px;
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.75px;
+text-align: left;
+text-decoration: none;
+/*padding: 4px 10px;*/
+}
+
+.commandText,.commandTextRemove,.commandTextnDisabled {
+color: #333695;
+cursor: pointer;
+background: #ffffff;
+border: 1px solid #333695;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 600;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+}
+.commandTextObs {
+color: #333695;
+cursor: pointer;
+background: #ffffff;
+border: 1px solid #333695;
+border-radius: 4px;
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+height: 50px;
+
+}
+.commandTextObsSelect {
+color: #333695;
+cursor: pointer;
+background: #ffffff;
+border: 1px solid #333695;
+border-radius: 4px;
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.75px;
+text-align: left;
+text-decoration: none;
+padding: 4px 20px;
+height: 25px;
+
+}
+
+.commandTextHeure {
+color: #333695;
+cursor: pointer;
+background: #ffffff;
+border: 1px solid #333695;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 600;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+height: 20px;
+}
+
+.commandTextLib {
+color: #333695;
+cursor: pointer;
+background: #ffffff;
+border: 1px solid #333695;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+width:200px;
+}
+.commandTextOrdo {
+color: #78B8B8;
+cursor: pointer;
+background: #ffffff;
+border: 1px solid #78B8B8;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 600;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+width:200px;
+}
+.commandTextOrdo3 {
+color: #78B8B8;
+background: #ffffff;
+border: 1px solid #78B8B8;
+border-radius: 4px;
+font-size: 12px;
+font-weight: 700;
+letter-spacing: 0.55px;
+text-align: center;
+text-decoration: none;
+padding: 4px 10px;
+width:97%;
+border-right-style: none;
+border-left-style: none;
+border-top-color: #3E8383;
+border-bottom-color: #3E8383;
+
+}
+.commandTextOrdo4 {
+color: #000000;
+background: #ffffff;
+font-size: 12px;
+font-weight: 700;
+letter-spacing: 0.55px;
+text-align: left;
+text-decoration: none;
+padding: 4px 10px;
+width:97%;
+height:24%
+}
+.commandTextOrdo2 {
+color: #78B8B8;
+cursor: pointer;
+background: #ffffff;
+border: 1px solid #78B8B8;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 600;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+width:400px;
+}
+
+
+.commandTextLong {
+color: #333695;
+cursor: pointer;
+background: #ffffff;
+border: 1px solid #333695;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+width:400px;
+}
+.inputLong
+{
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+width:400px;
+}
+.inputLongLeft
+{
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+text-decoration: none;
+padding: 4px 20px;
+width:400px;
+autocomplete:off;
+text-transform: uppercase;
+}
+.inputTresLongLeft
+{
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+text-decoration: none;
+padding: 4px 20px;
+width:600px;
+autocomplete:off;
+text-transform: uppercase;
+}
+
+.inputPetitLeft
+{
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+text-decoration: none;
+padding: 4px 20px;
+width:120px;
+autocomplete:off;
+}
+
+img {
+border: none;
+}
+.fontText {
+	font-size: 15px;
+	font-weight: 500;
+	letter-spacing: 0.75px;
+	color: #333695;
+	text-decoration: underline;
+}
+.fontTextTableau {
+	font-size: 15px;
+	font-weight: 600;
+	letter-spacing: 0.85px;
+	color: #333695;
+}
+.fontTextLigne {
+	font-size: 10px;
+	font-weight: 400;
+	letter-spacing: 0.85px;
+	color: #333695;
+}
+
+/* overrides of tablePane */
+/*table.tpTable {
+font-size: 12px;
+border: 2px solid #F1F0E7;
+padding: 2px;
+}
+/* @doc="Column header." */
+table.tpTable th {
+color: #3b84bc;
+border: none;
+background: white;
+font-weight: bold;
+text-align: left;
+padding: 2px;
+overflow: hidden;
+}
+/* @doc="Selected column header." */
+table.tpTable th.tpHdrSelected {
+color: #3b84bc;
+background: white;
+}
+table.tpTable td {
+border: none;
+padding: 2px;
+overflow: hidden;
+}
+table.tpTable tr.tpSelected td {
+font-weight: normal;
+border: none;
+padding-top: 2px;
+padding-bottom: 2px;
+}
+table.tpTable tr.tpSelected {
+color: black;
+border: none;
+background: #F3E799;
+background-image: none;
+}
+
+.textareaLong {
+	font-size:1.1em;
+    letter-spacing: 1px;
+    padding: 10px;
+    line-height: 1.5;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #999;
+    background: #F0F1E8;
+    font-weight:600;
+}
+
+/* @doc="Style for rows when not using zebra styling." */
+.tpRow {
+color: black;
+background: white;
+}
+/* @doc="Style for odd-rows when using zebra styling." */
+.tpOdd {
+color: black;
+background: #F0F0F0;
+}
+/* @doc="Style for even-rows when using zebra styling." */
+.tpEven {
+color: black;
+background: white;
+}
+/* @doc="Cell containing a link." */
+.tpAction {
+font-size: 0.9em;
+}
+.tpAction a {
+white-space: nowrap;
+color: #3b84bc;
+}
+.tpAction a:hover {
+color: #98923a;
+}
+.tpAction a:link {
+color: #3b84bc;
+}
+.tpAction a:active {
+color: #3b84bc;
+}
+/* @doc="Table around navigator bar." */
+.tnbrTable {
+background: #F3F7FA;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-transform: uppercase;
+}
+.tnbrTablePetit {
+background: #DBE0E6;
+border: 1px solid #F1F0E7;
+border-radius:3px;
+padding: 1px;
+width:40px;
+text-align:right;
+}
+.tnbrTableDate {
+background: #F3F7FA;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+
+}
+.tnbrTablePetit {
+background: #DBE0E6;
+border: 1px solid #F1F0E7;
+border-radius:3px;
+padding: 1px;
+width:40px;
+text-align:right;
+}
+.tnbrTableInfoComplementaire td {
+background: #F3F7FA;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: left;
+cursor:pointer;
+font-size:10px;
+font-weight:600;
+letter-spacing:0.75px;
+color:#333695;
+padding-left: 5px;
+vertical-align: middle;
+}
+
+/* @doc="Buttons within navigator bar." */
+.tnbrPagingButtons {
+border: 1px solid #B0B0B0;
+}
+.tnbrFilter {
+color: #404040;
+}
+.tnbrFilter input {
+border: 1px solid #B0B0B0;
+padding-left: 2px;
+}
+/* @doc="Row count indicator." */
+.tnbrFound {
+color: #404040;
+}
+/* combo boxes and dateText */
+.comboboxInput {
+border-top: 1px solid #cbcbcb;
+border-bottom: 1px solid #cbcbcb;
+border-left: 1px solid #cbcbcb;
+border-right: none;
+}
+.comboboxDropDown {
+border: 1px solid #cbcbcb;
+}
+.comboboxImgButton {
+border-top: 1px solid #cbcbcb;
+border-bottom: 1px solid #cbcbcb;
+border-left: none;
+border-right: 1px solid #cbcbcb;
+}
+.comboboxTextButton {
+border: 1px solid #cbcbcb;
+}
+/* override the default green/blue color with ISC blue */
+.modalGroup.modalGroupDialog {
+background: #333695;
+}
+.modalGroupTitle {
+border-bottom: 1px #333695 solid;
+}
+.modalGroupTitle td {
+color: #333695;
+}
+/* the effect of the following is to not show text in the top edge in modal dialog */
+.modalGroupIframe {
+background: #333695;
+}
+</style>
+<!-- Style: %CSP.UI.Portal.Application -->
+
+]]></CSP>
+
+
+<CSP name="styleCssMenu.csp" application="/csp/julien/" default="1"><![CDATA[
+<html>
+<head>
+<script type="text/javascript" src="includes/dynMenu.js"></script>
+ <!-- détéction du navigateur -->
+<script type="text/javascript" src="includes/browserdetect.js"></script>
+
+<!-- Put your page Title here -->
+<title>	Cache Server Page </title>
+</head>
+
+<body>
+<style type="text/css">
+/* CSS du menu horizontal, bieler batiste */
+
+.menu{
+    position:absolute;
+    display:block;
+    margin:0;
+    padding:0;
+    width:500px;
+    }
+
+.menu ul{
+    position:absolute;
+    display:block;
+    width:124px;
+    /*margin:0;*/
+    padding:0;
+    }
+    
+.menu li ul{
+    visibility:hidden;
+    }
+
+.menu li li ul{
+    position:absolute;
+    margin-left:124px;
+    margin-top:-23px;
+    }
+    
+.menu li{
+    list-style:none;
+    width:124px;
+    height:auto;
+    display:inline;
+    display/**/:block;
+    float:none;
+    float/**/:left;
+    margin:0;
+    padding:0;
+    }
+    
+.menu li li{
+    display:block;
+    float:none;
+    }
+    
+/* correct a little IE bug */
+* html .menu li li{
+    display:inline;
+    }
+
+.menu a{
+    text-align:center;
+    background-color: #9cf;
+    border:1px #666 solid;
+    color:#000;
+    display:block;
+    width:120px;
+    text-decoration:none;
+    padding:2px 0;
+    margin:1px;
+    }
+    
+.menu a:hover{
+    background-color: #eee;
+    border:1px #aaa solid;
+    }
+    
+/* for a mozilla better display with key nav */
+.menu a:focus{
+    background-color: #aaf;
+}
+
+a.linkOver{
+    background-color: #eee;
+    }
+.Style2 {color: #000000}
+.Style4 {
+	font-size: 30px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #009933;
+}
+.Style3 {
+	font-size: 17px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000080;
+}
+
+.Style5 {color: #000000}
+.Style6{
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #008080;
+}
+.Style7 {
+	font-size: 17px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #008040;
+}
+.Style7a {
+	font-size: 9px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000000 ;
+}
+
+.Style8 {
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000000;
+}
+.Style9 {
+	font-size: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #009933;
+}
+.Style10 {
+	font-size: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #009933;
+	text-align:center;
+}
+
+dl#photo dt
+	{
+		align:center;
+		font: italic 2.5em/1.5em Georgia, serif ;
+		color: #3300ff ;
+	}
+		
+dl#photo dd
+	{
+		margin: 0 ;
+	}
+		
+dl#photo img
+	{
+		border: 1px solid #dcb ;
+	}
+dl#photo1 dt
+	{
+		align:center;
+		font: italic 0.1em/0.1em Georgia, serif ;
+		color: #3300ff ;
+	}
+		
+dl#photo1 dd
+	{
+		margin: 0 ;
+	}
+.commandButtonTitre {
+	background: rgb(204,204,255);
+	color: black;
+	font-size: 1.0em;
+	text-decoration: none;
+	padding: 3px;
+	padding-left: 10px;
+	padding-right: 10px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+ 	border-top: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-right: 2px solid gray;
+    border-bottom: 2px solid gray;
+}
+.commandButtonMaint {
+	background: rgb(185,211,238);
+	color: black;
+	font-size: 0.75em;
+	text-decoration: none;
+	padding: 3px;
+	padding-left: 10px;
+	padding-right: 10px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+ 	border-top: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-right: 2px solid gray;
+    border-bottom: 2px solid gray;
+}
+.commandButtonMaint:hover {
+	background: rgb(100,211,238);
+	color: black;
+	font-size: 0.75em;
+	text-decoration: none;
+	padding: 3px;
+	padding-left: 10px;
+	padding-right: 10px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+ 	border-top: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-right: 2px solid gray;
+    border-bottom: 2px solid gray;
+}
+
+.commandButton {
+	background: rgb(90,107,141);
+	color: #E0E0E0;
+	font-size: 1.0em;
+	text-decoration: none;
+	padding: 3px;
+	padding-left: 10px;
+	padding-right: 10px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+ 	border-top: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-right: 2px solid gray;
+    border-bottom: 2px solid gray;
+}
+.commandButton:hover {
+	background: rgb(53,107,141);
+	color: white;
+	background-image: url(portal/button_hover.png);
+	background-repeat: repeat-x;
+}
+.commandButtonM {
+	background: rgb(204,204,255);
+	color: #000000;
+	font-size: 1.0em;
+	text-decoration: none;
+	padding: 3px;
+	padding-left: 10px;
+	padding-right: 10px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+ 	border-top: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-right: 2px solid gray;
+    border-bottom: 2px solid gray;
+}
+.commandButtonM:hover {
+	background: rgb(53,107,141);
+	color: white;
+	background-image: url(portal/button_hover.png);
+	background-repeat: repeat-x;
+}
+.commandButtonL {
+	background: rgb(246,190,161);
+	color: #000000;
+	font-size: 0.7em;
+	text-decoration: none;
+	padding: 3px;
+	padding-left: 10px;
+	padding-right: 10px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+ 	border-top: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-right: 2px solid gray;
+    border-bottom: 2px solid gray;
+}
+.commandButtonL:hover {
+	background: rgb(53,107,141);
+	color: white;
+	background-image: url(portal/button_hover.png);
+	background-repeat: repeat-x;
+}
+.commandButtonB {
+	background: rgb(206,233,255);
+	color: #000000;
+	font-size: 0.7em;
+	text-decoration: none;
+	padding: 3px;
+	padding-left: 10px;
+	padding-right: 10px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+ 	border-top: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-right: 2px solid gray;
+    border-bottom: 2px solid gray;
+}
+.commandButtonB:hover {
+	background: rgb(53,107,141);
+	color: white;
+	background-image: url(portal/button_hover.png);
+	background-repeat: repeat-x;
+}
+.commandButtonBL {
+	background: rgb(254,250,255);
+	color: #000000;
+	font-size: 0.7em;
+	text-decoration: none;
+	padding: 3px;
+	padding-left: 10px;
+	padding-right: 10px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+ 	border-top: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-right: 2px solid gray;
+    border-bottom: 2px solid gray;
+}
+.commandButtonBL:hover {
+	background: rgb(53,107,141);
+	color: white;
+	background-image: url(portal/button_hover.png);
+	background-repeat: repeat-x;
+}
+
+.commandButtonbloc {
+	background: rgb(255,255,255);
+	color: #000000;
+	font-weight:bold;
+	font-size: 1.00em;
+	text-decoration: none;
+	padding: 3px;
+	padding-left: 10px;
+	padding-right: 10px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+ 	border-top: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-right: 2px solid gray;
+    border-bottom: 2px solid gray;
+}
+.commandButtonbloc:hover {
+	background: rgb(53,107,141);
+	color: white;
+	background-image: url(portal/button_hover.png);
+	background-repeat: repeat-x;
+}
+.commandButtonblocS {
+	background: rgb(195,255,255);
+	color: #000000;
+	font-weight:bold;
+	font-size: 1.00em;
+	text-decoration: none;
+	padding: 3px;
+	padding-left: 10px;
+	padding-right: 10px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+ 	border-top: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-right: 2px solid gray;
+    border-bottom: 2px solid gray;
+}
+.commandButtonblocS:hover {
+	background: rgb(153,107,141);
+	color: white;
+	background-image: url(portal/button_hover.png);
+	background-repeat: repeat-x;
+}
+
+.commandButtonTd {
+	background: rgb(200,200,200);
+	color: #E0E0E0;
+	font-size: 1.0em;
+	text-decoration: none;
+	padding: 3px;
+	padding-left: 10px;
+	padding-right: 10px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+ 	border-top: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-right: 2px solid gray;
+    border-bottom: 2px solid gray;
+}
+
+.portalLogoBox {
+	position: relative;
+	top: 0px;
+	padding: 10px;
+	padding-bottom: 4px;
+	padding-right: 40px;
+	width:520px;
+	height:50px;
+	right: 0px;
+	text-align: center;
+	background: rgb(232,231,226);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.0,rgb(232,231,226)), color-stop(0.5,rgb(242,241,236)), color-stop(1.0,rgb(232,231,226)));
+	background: -moz-linear-gradient(top, rgb(232,231,226), rgb(242,241,236),rgb(222,221,216));
+	zindex: 3;
+		padding: 3px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+ 	border-top: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-right: 2px solid gray;
+    border-bottom: 2px solid gray;
+
+}
+.portalLogoBoxB {
+	position: relative;
+	top: 0px;
+	padding: 10px;
+	padding-bottom: 4px;
+	padding-right: 40px;
+	right: 0px;
+	text-align: left;
+	background: rgb(232,231,226);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.0,rgb(232,231,226)), color-stop(0.5,rgb(242,241,236)), color-stop(1.0,rgb(232,231,226)));
+	background: -moz-linear-gradient(top, rgb(232,231,226), rgb(242,241,236),rgb(222,221,216));
+	zindex: 3;
+		padding: 3px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+ 	border-top: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-right: 2px solid gray;
+    border-bottom: 2px solid gray;
+
+}
+
+.commandSelectTd {
+	background: rgb(200,200,200);
+	color: #000000;
+	font-size: 1.0em;
+	text-decoration: none;
+	padding: 3px;
+	padding-left: 10px;
+	padding-right: 10px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+ 	border-top: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-right: 2px solid gray;
+    border-bottom: 2px solid gray;
+}
+
+.portalLogoBoxTitre {
+	position: relative;
+	top: 0px;
+	padding: 10px;
+	padding-bottom: 4px;
+	padding-right: 40px;
+	right: 0px;
+	text-align: left
+		padding: 3px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+ 	border-top: 10px solid lightgray;
+    border-left: 10px solid lightgray;
+    border-right: 2px solid lightgray;
+    border-bottom: 2px solid gray;
+
+}
+
+
+</style>
+
+</body>
+</html>
+]]></CSP>
+
+
+<CSP name="styleCssNew.csp" application="/csp/julien/" default="1"><![CDATA[
+<style type="text/css">
+/* YSD3631 Everything below the header remains the same with these exceptions:
+Links change to InterSystems blue: #333695
+Beige background of right column panels change to light gray: #F0F0F0
+*/
+body {
+font-family: "Source Sans Pro",Futura,Arial,sans-serif;
+}
+legend {
+background: rgb(53,107,141);
+background-image: none;
+background-repeat: repeat-x;
+border-bottom: 1px darkblue solid;
+padding-top: 5px;
+padding-bottom: 1px;
+color: white;
+height:30px;
+vertical-align: baseline;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+  padding: 2px 1px 0;
+}
+a:link {
+  color: #265301;
+}
+
+a:visited {
+  color: #437A16;
+}
+
+a:focus {
+  border-bottom: 1px solid;
+  background: #BAE498;
+}
+
+a:hover {
+  border-bottom: 1px solid;
+  background: #CDFEAA;
+}
+
+a:active {
+  background: #265301;
+  color: #CDFEAA;
+}
+.tnbrTablelig1 {
+background: #F3F7FA;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+height:40px
+}
+.tnbrTablelig2 {
+background: #FFFFFF;
+border: 1px solid #FFFFFF;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+height:40px
+
+}
+
+
+/* overrider locator bar style (skipped by YSD3631 as it is not currently used by SMP */
+.locatorBarTable td {
+background: rgb(53,107,141);
+background-image: none;
+background-repeat: repeat-x;
+border-bottom: 1px darkblue solid;
+padding-bottom: 1px;
+color: white;
+}
+.locatorBarLinks {
+color: white;
+}
+.locatorBarLinks a {
+color: white;
+}
+.locatorBarLinks a:visited {
+color: white;
+}
+.locatorBarLinks a:hover {
+color: darkred;
+background: #FFFAE7;
+}
+.locatorBarSelect {
+color: white;
+}
+/* style for "Management Portal" */
+.portalName {
+color:#000000;
+font-family: Montserrat,Futura,Arial,sans-serif;
+font-size:18px;
+font-weight: bold;
+text-align:left;
+text-valign: middle;
+position: absolute;
+left: 300px;
+top: 20px;
+}
+.portalPropertyPanelTitle {
+color: white;
+font-size: 12pt;
+padding: 5px;
+}
+.portalPropertyPanelCommands {
+color: white;
+background: rgb(53,107,141);
+width: 100px;
+text-align: center;
+font-size: 9pt;
+border: 1px solid #CBCBCB;
+}
+.portalTitleArch {
+box-shadow:0 1px 8px 0 rgba(0,0,0,0.50);
+color:#000000;
+text-align: center;
+font-size: 12pt;
+
+}
+
+.portalTitle {
+width: 100%;
+height: 35px;
+position: relative;
+box-shadow:0 2px 8px 0 rgba(0,0,0,0.50);
+box-sizing: border-box;
+padding: 3px 3px;
+
+}
+.portalTitleOrdo {
+width: 100%;
+height: 150px;
+/*box-shadow:0 1px 1px 0 rgba(0,0,0,0.50);*/
+position: relative;
+box-sizing: border-box;
+padding: 3px 3px;
+
+}
+
+.portalTitleInfoBox {
+left: 20px;
+position: absolute;
+top: 70px;
+width: 100%;
+box-shadow:0 2px 8px 4 rgba(0,0,0,0.12);
+}
+.portalTitleInfoLabel {
+font-family: SourceSansPro,Futura,Arial,sans-serif;
+font-size: 14px;
+font-weight: bold;
+color: #000000;
+padding: 2px 2px;
+}
+.portalTitleInfoVal {
+font-family: SourceSansPro,Futura,Arial,sans-serif;
+font-size: 14px;
+font-weight: 400;
+color: #000000;
+padding: 4px 12px 4px 2px;
+}
+.portalLostConnectivityWarn {
+font-family: SourceSansPro,Futura,Arial,sans-serif;
+font-size: 13px;
+font-weight: bold;
+letter-spacing: 0.75px;
+text-align: center;
+background: #aa4040;
+color:#ffffff;
+border-radius: 4px;
+padding: 6px 20px;
+margin-left: 20px;
+}
+.portalenteteonco {
+font-family: SourceSansPro,Futura,Arial,sans-serif;
+font-size: 13px;
+font-weight: bold;
+letter-spacing: 0.75px;
+text-align: center;
+background: rgb(53,107,141);
+color:#ffffff;
+border-radius: 4px;
+padding: 6px 20px;
+margin-left: 20px;
+}
+.portalentetelist {
+font-family: SourceSansPro,Futura,Arial,sans-serif;
+font-size: 10px;
+font-weight: bold;
+letter-spacing: 0.75px;
+text-align: center;
+background: rgb(53,107,141);
+color:#000000;
+border-radius: 4px;
+padding: 6px 20px;
+margin-left: 2px;
+width:100%;
+text-indent:5px;
+}
+
+/* style to show "Development System" or "Live System", etc. */
+#portalServerFlag {
+float: left;
+}
+.portalTitleServerFlag {
+border: 2px solid #333695;
+border-radius: 4px;
+color: #000000;
+font-family: Montserrat,Futura,Arial,sans-serif;
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.75px;
+padding: 4px 20px;
+width:1050px;
+}
+.portalTitleServerListArch {
+border: 2px solid #333695;
+border-radius: 4px;
+color: #000000;
+font-family: Montserrat,Futura,Arial,sans-serif;
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.75px;
+padding: 4px 20px;
+width:1500px;
+}
+
+.portalTitleServerArchive {
+border: 2px solid #333695;
+border-radius: 4px;
+color: #000000;
+font-family: Montserrat,Futura,Arial,sans-serif;
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.75px;
+padding: 4px 20px;
+width:90%;
+
+}.portalTitleServerArchiveImp {
+border: 1px solid #333695;
+border-radius: 4px;
+color: #000000;
+font-family: Montserrat,Futura,Arial,sans-serif;
+font-size: 0.9em;
+font-weight: 600;
+letter-spacing: 0.55px;
+padding: 2px 10px;
+width:100%;
+}
+
+.portalTitleServerArchiveP {
+border: 2px solid #333695;
+border-radius: 4px;
+color: #000000;
+Background-color:#bbbff0;
+font-family: Montserrat,Futura,Arial,sans-serif;
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.75px;
+padding: 4px 20px;
+width:90%;
+}
+
+.portalTitleServerArchiveDem {
+border: 2px solid #333695;
+border-radius: 4px;
+color: #000000;
+Background-color:#F2FAFA;
+font-family: Montserrat,Futura,Arial,sans-serif;
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.75px;
+padding: 4px 20px;
+width:90%;
+}
+.portalTitleServerEtiquette td {
+border: 2px solid #333695;
+border-radius: 4px;
+color: #000000;
+font-family: Montserrat,Futura,Arial,sans-serif;
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.75px;
+padding: 4px 20px;
+width:200px;
+}
+
+.portalTitleServerFlagLive {
+color: #da4848;  /* red */
+border: 2px solid #da4848;
+}
+.portalTitleListBox {
+position: absolute;
+top: 5px;
+left: 20px;
+font-size: 9pt;
+}
+.portalTitleMenuBox {
+position: relative;
+top: 20px;
+left: 600px;
+font-size: 14px;
+}
+/* attemp to make small links and mainMenu not to overlap */
+#portalTitleMenuBox {
+position: absolute;
+left: 50%;
+min-width: 350px;
+}
+#mainMenu {
+position: absolute;
+left: 95%;
+top: 8px;
+}
+@media all and (max-width: 980px) {
+#portalTitleMenuBox {
+margin-left: 0px;
+left: 600px;
+}
+#mainMenu {
+margin-left: 0px;
+left: 1210px;
+}
+}
+.pageTitleText {
+color: #333695;
+font-family: "Source Sans Pro",Futura,Arial,sans-serif;
+font-size: 12px;
+font-weight: 550;
+text-docoration: none;
+}
+.portalTitleLink {
+color: #000000;
+font-family: "Source Sans Pro",Futura,Arial,sans-serif;
+font-size: 14px;
+font-weight: 600;
+padding: 2px;
+text-decoration: none;
+}
+.portalServerLink {
+color: #333695;
+font-family: "Source Sans Pro",Futura,Arial,sans-serif;
+font-size: 12px;
+font-weight: 550;
+text-decoration: underline;
+}
+.portalLocatorLink {
+text-decoration: none;
+}
+.portalTitleLink:hover,.portalServerLink:hover,.portalLocatorLink:hover {
+color: #00A09A;
+transition: color 0.03 ease;
+}
+.portalTitleTabBox {
+position: absolute;
+color: white;
+font-size: 16px;
+bottom: 0px;
+left: 20px;
+width: 300px;
+height: 25px;
+padding-left: 15px;
+padding-right: 15px;
+padding: 5px;
+border-top-right-radius: 5px;
+border-top-left-radius: 5px;
+overflow: hidden;
+}
+.portalLogoBox {
+position: absolute;
+top: 0px;
+padding: 3px;
+padding-bottom: 4px;
+padding-right: 15px;
+left: 10px;
+width:210px;
+z-index: 3;
+}
+.topLine {
+border-top: 2px solid #333695;
+}
+.portalLogo {
+position: relative;
+top: 0px;
+left: 10px;
+padding: 2px;
+padding-left: 5px;
+padding-right: 5px;
+width:210px;
+height:50px;
+font-weight: bold;
+font-size: 12pt;
+}
+/* overrides of Finder styles */
+.finderItemSelected {
+background: #bfe4e3;
+border: 1px solid #cbcbcb;
+color: #000000;
+}
+.finderItemSelected a {
+color: #000000;
+}
+.finderListRowSelected {
+background: #bfe4e3;  /*#2F6280;*/
+}
+.finderItem, .finderItemOdd,.finderItemSelected, .finderItemDisabled {
+border: 1px solid #CBCBCB;
+}
+/* command button styles */
+.commandButton,.commandButtonRemove,.commandButtonDisabled {
+color: #333695;
+cursor: pointer;
+background: #ffffff;
+border: 2px solid #333695;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 600;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+}
+.commandButtonRemove {
+background: #E5EFE8;
+color: #333695;
+border: 2px solid #E5EFE8;
+}
+.commandButtonRemove:hover {
+border: 4px solid #00A09A;
+color: #dddA09A;
+}
+.commandButtonDisabled {
+background: #ffffff;
+color: #979797;
+cursor: default;
+border: 2px solid #c5c5c5;
+}
+.commandButton:hover {
+border: 2px solid #00A09A;
+color: #00A09A;
+/*transition: color 0.03 ease;*/
+}
+.commandButtonPetit {
+color: #000000;
+cursor: pointer;
+background: #C9E8E8;
+border: 2px solid #A9D8D8;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.55px;
+text-align: center;
+text-decoration: none;
+padding: 3px 5px;
+}
+.commandButtonPetit:hover {
+border: 2px solid #04AB20;
+color: #ffffff;
+/*transition: color 0.03 ease;*/
+background: #04AB20;
+}
+
+.commandButtonImg {
+color: #333695;
+cursor: pointer;
+background: #ffffff;
+border: 0px ;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 600;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+}
+
+.commandText,.commandTextRemove,.commandTextnDisabled {
+color: #333695;
+cursor: pointer;
+background: #ffffff;
+border: 1px solid #333695;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 600;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+}
+.commandTextObs {
+color: #333695;
+cursor: pointer;
+background: #ffffff;
+border: 1px solid #333695;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 600;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+height: 50px;
+}
+
+.commandTextLib {
+color: #333695;
+cursor: pointer;
+background: #ffffff;
+border: 1px solid #333695;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+width:200px;
+}
+.commandTextOrdo {
+color: #78B8B8;
+cursor: pointer;
+background: #ffffff;
+border: 1px solid #78B8B8;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 600;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+width:200px;
+}
+.commandTextOrdo3 {
+color: #78B8B8;
+background: #ffffff;
+border: 1px solid #78B8B8;
+border-radius: 4px;
+font-size: 12px;
+font-weight: 700;
+letter-spacing: 0.55px;
+text-align: center;
+text-decoration: none;
+padding: 4px 10px;
+width:97%;
+border-right-style: none;
+border-left-style: none;
+border-top-color: #3E8383;
+border-bottom-color: #3E8383;
+
+}
+.commandTextOrdo4 {
+color: #000000;
+background: #ffffff;
+font-size: 12px;
+font-weight: 700;
+letter-spacing: 0.55px;
+text-align: left;
+text-decoration: none;
+padding: 4px 10px;
+width:97%;
+height:24%
+}
+.commandTextOrdo2 {
+color: #78B8B8;
+cursor: pointer;
+background: #ffffff;
+border: 1px solid #78B8B8;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 600;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+width:400px;
+}
+
+
+.commandTextLong {
+color: #333695;
+cursor: pointer;
+background: #ffffff;
+border: 1px solid #333695;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+width:400px;
+}
+.inputLong
+{
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+width:400px;
+}
+.inputLongLeft
+{
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+text-decoration: none;
+padding: 4px 20px;
+width:400px;
+autocomplete:off;
+text-transform: uppercase;
+}
+.inputPetitLeft
+{
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+text-decoration: none;
+padding: 4px 20px;
+width:120px;
+autocomplete:off;
+}
+
+img {
+border: none;
+}
+.fontText {
+	font-size: 15px;
+	font-weight: 500;
+	letter-spacing: 0.75px;
+	color: #333695;
+	text-decoration: underline;
+}
+.fontTextTableau {
+	font-size: 15px;
+	font-weight: 600;
+	letter-spacing: 0.85px;
+	color: #333695;
+}
+.fontTextLigne {
+	font-size: 10px;
+	font-weight: 400;
+	letter-spacing: 0.85px;
+	color: #333695;
+}
+
+/* overrides of tablePane */
+/*table.tpTable {
+font-size: 12px;
+border: 2px solid #F1F0E7;
+padding: 2px;
+}
+/* @doc="Column header." */
+table.tpTable th {
+color: #3b84bc;
+border: none;
+background: white;
+font-weight: bold;
+text-align: left;
+padding: 2px;
+overflow: hidden;
+}
+/* @doc="Selected column header." */
+table.tpTable th.tpHdrSelected {
+color: #3b84bc;
+background: white;
+}
+table.tpTable td {
+border: none;
+padding: 2px;
+overflow: hidden;
+}
+table.tpTable tr.tpSelected td {
+font-weight: normal;
+border: none;
+padding-top: 2px;
+padding-bottom: 2px;
+}
+table.tpTable tr.tpSelected {
+color: black;
+border: none;
+background: #F3E799;
+background-image: none;
+}
+
+.textareaLong {
+	font-size:1.1em;
+    letter-spacing: 1px;
+    padding: 10px;
+    line-height: 1.5;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #999;
+    background: #F0F1E8;
+}
+
+/* @doc="Style for rows when not using zebra styling." */
+.tpRow {
+color: black;
+background: white;
+}
+/* @doc="Style for odd-rows when using zebra styling." */
+.tpOdd {
+color: black;
+background: #F0F0F0;
+}
+/* @doc="Style for even-rows when using zebra styling." */
+.tpEven {
+color: black;
+background: white;
+}
+/* @doc="Cell containing a link." */
+.tpAction {
+font-size: 0.9em;
+}
+.tpAction a {
+white-space: nowrap;
+color: #3b84bc;
+}
+.tpAction a:hover {
+color: #98923a;
+}
+.tpAction a:link {
+color: #3b84bc;
+}
+.tpAction a:active {
+color: #3b84bc;
+}
+/* @doc="Table around navigator bar." */
+.tnbrTable {
+background: #F3F7FA;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-transform: uppercase;
+}
+.tnbrTablePetit {
+background: #DBE0E6;
+border: 1px solid #F1F0E7;
+border-radius:3px;
+padding: 1px;
+width:40px;
+text-align:right;
+}
+.tnbrTableDate {
+background: #F3F7FA;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+
+}
+.tnbrTableDateSelect {
+background: #F3F7FA;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: left;
+cursor:pointer;
+height:30px;
+font-weight:500;
+
+}
+
+.tnbrTablePetit {
+background: #DBE0E6;
+border: 1px solid #F1F0E7;
+border-radius:3px;
+padding: 1px;
+width:40px;
+text-align:right;
+}
+.tnbrTableInfoComplementaire td {
+background: #F3F7FA;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: left;
+cursor:pointer;
+font-size:10px;
+font-weight:600;
+letter-spacing:0.75px;
+color:#333695;
+padding-left: 5px;
+vertical-align: middle;
+}
+
+/* @doc="Buttons within navigator bar." */
+.tnbrPagingButtons {
+border: 1px solid #B0B0B0;
+}
+.tnbrFilter {
+color: #404040;
+}
+.tnbrFilter input {
+border: 1px solid #B0B0B0;
+padding-left: 2px;
+}
+/* @doc="Row count indicator." */
+.tnbrFound {
+color: #404040;
+}
+/* combo boxes and dateText */
+.comboboxInput {
+border-top: 1px solid #cbcbcb;
+border-bottom: 1px solid #cbcbcb;
+border-left: 1px solid #cbcbcb;
+border-right: none;
+}
+.comboboxDropDown {
+border: 1px solid #cbcbcb;
+}
+.comboboxImgButton {
+border-top: 1px solid #cbcbcb;
+border-bottom: 1px solid #cbcbcb;
+border-left: none;
+border-right: 1px solid #cbcbcb;
+}
+.comboboxTextButton {
+border: 1px solid #cbcbcb;
+}
+/* override the default green/blue color with ISC blue */
+.modalGroup.modalGroupDialog {
+background: #333695;
+}
+.modalGroupTitle {
+border-bottom: 1px #333695 solid;
+}
+.modalGroupTitle td {
+color: #333695;
+}
+/* the effect of the following is to not show text in the top edge in modal dialog */
+.modalGroupIframe {
+background: #333695;
+}
+</style>
+<!-- Style: %CSP.UI.Portal.Application -->
+<style type="text/css">
+/* @doc="Combobox and dataCombo box drop-down style for this application." */
+.comboboxDropDown {
+padding: 4px;
+}
+.comboboxItem {
+font-size: 0.9em;
+}
+.comboboxItemSelected {
+font-size: 0.9em;
+}
+/* LocatorBar Links Style */
+DIV.locatorBarLinks {
+font-size: 0.8em;
+font-weight: bold;
+color: #333695;
+text-decoration: none;
+}
+DIV.locatorBarLinks A {
+color: #333695;
+text-decoration: none;
+padding-right: 1px;
+padding-left: 1px;
+}
+DIV.locatorBarLinks A:visited {
+color: #333695;
+}
+DIV.locatorBarLinks A:hover {
+color: #da4848;
+background: #FFFAE7;
+}
+.fieldSet {
+background: #F0F0F0;
+padding: 4px;
+font-size: 12px;
+font-weight: normal;
+
+}
+.fieldSet:hover {
+border: 2px solid #00A09A;
+color: #00A09A;
+transition: color 0.03 ease;
+background: #FFFAE7;
+cursor:pointer;
+}
+
+.fieldSet2 {
+background: #FFFFFFF;
+padding: 4px;
+font-size: 12px;
+font-weight: normal;
+}
+.fieldSet2:hover {
+border: 2px solid #00A09A;
+color: #00A09A;
+transition: color 0.03 ease;
+background: #FFFAE7;
+cursor:pointer;
+}
+.fieldSettitre {
+background: #D8E1E1;
+padding: 4px;
+font-size: 12px;
+font-weight: normal;
+}
+
+/* @doc="Default style for labels for disabled components." */
+.zenLabelDisabled {
+color: #979797;
+font-size: 12px;
+font-weight: normal;
+padding-right: 5px;
+}
+.helpText {
+color:#979797;
+font-size:12px;
+}
+.redText {
+color:#da4848;
+font-size:12px;
+font-weight: bold;
+}
+/* @doc="Item within listBox. Added font-size." */
+.listBoxItem {
+white-space: nowrap;
+width: 100%;
+color: black;
+/* ie does not handle transparent */
+border: 1px solid white;
+cursor: pointer;
+font-size:0.8em;
+}
+/* @doc="Selected item within listBox." */
+.listBoxItemSelected {
+white-space: nowrap;
+width: 100%;
+color: black;
+background: #E0E0E0;
+font-weight: bold;
+border: 1px dotted #202060;
+cursor: pointer;
+font-size:0.8em;
+}
+/* This is the style similar to intersystems.css's DetailCommand.*/
+.DetailCommand {
+font-size: 1.0em;
+font-weight: bold;
+border-top: 1px #979797 solid;
+border-bottom: 1px #979797 solid;
+background: rgb(53,107,141);
+margin-left: 0px;
+margin-right: 0px;
+margin-top: 0px;
+margin-bottom: 10px;
+width: 100%;
+color:#ffffff;
+}
+.DetailCommandLight {
+font-size: 1.0em;
+font-weight: bold;
+border-top: 1px #979797 solid;
+border-bottom: 1px #979797 solid;
+background: rgb(137,164,185);
+margin-left: 0px;
+margin-right: 0px;
+margin-top: 0px;
+margin-bottom: 10px;
+width: 100%;
+color:#ffffff;
+}
+
+.enteteliste {
+font-size: 1.0em;
+font-weight: bold;
+border-top: 1px #979797 solid;
+border-bottom: 1px #979797 solid;
+background: rgb(53,107,141);
+margin-left: 0px;
+margin-right: 0px;
+margin-top: 0px;
+margin-bottom: 5px;
+width: 100%;
+color:#ffffff;
+}
+.buttonArchSelect {
+font-size: 1.2em;
+font-weight: bold;
+border-top: 1px #979797 solid;
+border-bottom: 1px #979797 solid;
+background: rgb(53,107,141);
+margin-left: 0px;
+margin-right: 0px;
+margin-top: 0px;
+margin-bottom: 5px;
+color:#ffffff;
+}
+
+/* @doc="Default style for label/caption." */
+.caption {
+color: #404040;
+font-size: 12px;
+font-weight: bold;
+padding-right: 5px;
+}
+.normal {
+color: black;
+font-size: 12px;
+padding-right: 5px;
+}
+.disablednormal {
+color: #979797;
+font-size: 12px;
+padding-right: 5px;
+}
+.radioSetSpan {
+color: black;
+font-size: 12px;
+font-weight: normal;
+padding-left: 5px;
+}
+/* descriptive text for page title */
+#Text1 {
+color: #000000;
+font-size: 18px;
+font-weight: bold;
+}
+/* Generic style for messages */
+.rednote {
+font-size: 11px;
+color: #da4848;
+text-align: left;
+font-weight: bold;
+}
+.greennote {
+font-size: 11px;
+color: #52b012;
+text-align: left;
+font-weight: bold;
+}
+</style>
+<!-- Style: %CSP.UI.Portal.Application -->
+<style type="text/css">
+/* @doc="label style for for Zen control 'button' in this application." */
+.button {
+margin-left: 2px;
+}
+/* @doc="error note style used in idRespond" */
+.errorNote {
+background: #FFFFFF;
+border: 1px solid #DA4848; /* red */
+border-radius: 4px;
+color: #DA4848;
+font-size: 12px;
+font-weight: bold;
+padding: 10px;
+text-align: left;
+display:inline-block;
+}
+/* @doc="regular note style used in idRespond" */
+.note {
+background: #FFFFFF;
+border: 1px solid #CBCBCB;
+border-radius: 4px;
+color: #000000;
+font-size: 12px;
+font-weight: bold;
+padding: 10px;
+text-align: left;
+display:inline-block;
+}
+.successNote {
+background: #FFFFFF;
+border: 1px solid #94BABA; /* green */
+border-radius: 4px;
+color: #52B012;
+font-size: 12px;
+font-weight: bold;
+padding: 10px;
+text-align: left;
+display:inline-block;
+}
+/* @doc="generic label style used for Zen control 'label' in this application" */
+.zenLabel {
+color: #000000;
+font-size: 12px;
+font-weight: 600;
+text-align: left;
+}
+/* @doc="generic hint style used for Zen control 'hint' in this application" */
+.zenHint {
+color:#717171;
+font-size:12px;
+}
+/* @doc="style for for links in forms in this application." */
+.smpLink a.link {
+text-decoration:underline;
+font-weight:normal;
+}
+</style>
+<!-- Style: %ZEN.Portal.standardPage -->
+<style type="text/css">
+body {
+background: #ffffff;
+font-family: "Source Sans Pro",Futura,Arial,sans-serif;
+}
+/* tool ribbon */
+.toolRibbon {
+height: 48px;
+background: white;
+float: left;
+vertical-align: middle;
+}
+.toolRibbonEnd {
+border: 1px solid #f0f0f0;
+width: 100%;
+}
+/* dark green and bold for ribbon title */
+.ribbonTitle {
+color:#00AFA9;
+font-family: Montserrat,Futura,Arial,sans-serif;
+font-size:36px;
+font-weight: bold;
+text-align:left;
+}
+.ribbonLabel {
+vertical-align: middle;
+font-weight: bold;
+font-size: 10pt;
+}
+.ribbonSortOption:hover,.ribbonSortOptionSelected:hover {
+color: darkred;
+}
+.ribbonSortOption {
+text-decoration: none;
+color: #5ba4dc;
+font-weight: normal;
+}
+.ribbonSortOptionSelected {
+text-decoration: none;
+color: #404040;
+background: #FFEEAA;
+font-weight: normal;
+}
+.viewIconBar {
+vertical-align: bottom;
+}
+.viewIcon,.viewIconSelected,.viewIconDis,.viewIconHover {
+vertical-align: bottom;
+border: 2px solid white;
+hight: 34px;
+width: 34px;
+}
+.viewIconSelected {
+border-radius: 2px;
+border: 3px solid #000000;
+}
+.viewIconHover {
+background: #BFE4E3;
+cursor:pointer;
+}
+/* Menu Bar */
+.csMenuBar {
+display:block;
+position:absolute;
+top:2px;
+right:1px;
+border:2px solid #333695;
+border-radius:4px;
+color:#333695;
+height:42px;
+width:83px;
+letter-spacing:0.75px;
+text-align:center;
+}
+.csMenuBar-active {
+background:#333695;
+}
+.csMenuBar-static {
+background:white;
+}
+.csMenuBarText-active {
+color:white;
+}
+.csMenuBarText-static {
+color:#333695;
+}
+.csMenuBarItem {
+background:white;
+cursor:pointer;
+color:#333695;
+font-size:12px;
+font-weight:bold;
+font-family:Montserrat,Futura,Arial,sans-serif;
+letter-spacing:0.75px;
+}
+.csMenuItem {
+font-family:Montserrat,Futura,Arial,sans-serif;
+}
+.csActiveMenuItem {
+background: #bfe4e3;
+color: #404040;
+}
+.shadow {
+background: none;
+}
+/* Search Box */
+#searchDiv {
+position: absolute;
+top: 117px;
+right: 30px;
+}
+.search-icon {
+width: 22px;
+vertical-align: bottom;
+cursor: pointer;
+}
+/* @doc="Override ZEN components' default style" */
+/* @doc="Text button in combobox." */
+.comboboxItem {
+font-size: 12px;
+}
+.comboboxTextButton {
+vertical-align: middle;
+font-size: 0.75em;
+border: 1px solid #cbcbcb;
+height: 100%;
+background: #404040;
+background-image: none;
+}
+.comboboxTextButton:hover {
+background: #404000;
+background-image: none;
+}
+/* @doc="Table displaying combobox dropdown contents." */
+/* comboBox */
+/* @doc="Headers within combobox dropdown list." */
+.comboboxItemSelected {
+width: 100%;
+color: #000000;
+background: #bfe4e3;
+background-image: none;
+border: 1px solid #cbcbcb;
+cursor: pointer;
+}
+/* @doc="Style for loading message within combobox dropdown." */
+.comboboxLoading {
+font-style: italic;
+color: #333695;
+}
+.comboboxTable th {
+white-space: nowrap;
+padding-right: 3px;
+padding-bottom: 2px;
+font-weight: bold;
+text-align: left;
+border-bottom: 1px solid #cbcbcb;
+background: #ffffff;
+background-image: none;
+}
+/* listBox */
+.listBox {
+font-size: 12px;
+color: #000000;
+background: white;
+border: 1px #cbcbcb solid;
+}
+/* @doc="Item within listBox." */
+.listBoxItem {
+white-space: nowrap;
+width: 100%;
+color: #000000;
+cursor: pointer;
+padding: 1px;
+}
+/* @doc="Mouse hover over item within combobox dropdown." */
+.comboboxItem a:hover {
+color: #000000;
+background: #f7f7f7;
+border: 1px solid #cbcbcb;
+}
+/* @doc="Selected item within listBox." */
+.listBoxItemSelected {
+white-space: nowrap;
+width: 100%;
+color: #000000;
+background: #bfe4e3;
+font-weight: bold;
+cursor: pointer;
+padding: 1px;
+}
+/* @doc="Selected item with focus within listBox." */
+.listBoxItemFocus {
+white-space: nowrap;
+width: 100%;
+font-weight: bold;
+color: #000000;
+background: #bfe4e3;
+background-image: none;
+border: 1px solid #cbcbcb;
+cursor: pointer;
+padding: 1px;
+}
+.listBoxItem:hover, .listBoxItemSelected:hover, .listBoxItemFocus:hover {
+color: #000000;
+background: #f7f7f7;
+}
+table.tpTable tr.tpSelected {
+background: #bfe4e3;
+}
+</style>
+<!-- CSS3Style: %CSP.Portal.Template -->
+<style type="text/css">
+#zenBody {
+margin:0px; padding: 0px;
+}
+.EditForm {
+border: 1px solid #CBCBCB;
+border-radius: 4px;
+}
+.ErrorBox {
+background: none repeat scroll 0 0 white;
+border: 1px solid gray;
+color: #DA4848;
+font-family: "courier new",Futura,Arial,sans-serif;
+margin: 20px;
+padding: 5px;
+}
+a.link {
+color: #333695;
+font-family: "Source Sans Pro",Futura,Arial,sans-serif;
+font-size: 12px;
+font-weight: bold;
+padding-left: 4px;
+text-decoration: none;
+}
+a.link:visited {
+color: #00A09A;
+}
+a.link:hover {
+color: #00A09A;
+}
+.iconHover {
+background: #FFEEAA;
+cursor: pointer;
+}
+</style>
+<!-- Style: %CSP.UI.Portal.Template -->
+<style type="text/css">
+/* light purple for Administration pages.
+See %CSP.UI.Portal.Utils for Operations
+See %CSP.UI.Template.List and %CSP.UI.Template.Property for Explorer pages
+.ribbonTitle {
+background: #D2CFDF;
+}*/
+/* additional style for table pane */
+table.tpTable th {
+border-right: 1px solid #F1F0E7;
+border-bottom: 1px solid #F1F0E7;
+}
+table.tpTable td {
+border-right: 1px solid #F1F0E7;
+border-top: 1px solid #F1F0E7;
+}
+</style>
+<!-- Style: %CSP.UI.Portal.Utils -->
+<style type="text/css">
+/* light blue for Operations pages
+.ribbonTitle {
+background: #C7E4EC;
+}*/
+</style>
+<!-- Style: %CSP.UI.Template.List -->
+<style type="text/css">
+/* light green for Explorer pages
+.ribbonTitle {
+background: #C5E5C9;
+}*/
+/* div around results table */
+#searchGroup {
+background: #F0F0F0;
+padding-left: 3px;
+padding-right: 5px;
+border-bottom: 1px solid gray;
+border-right:  1px solid gray;
+}
+#searchPane {
+padding-left: 3px;
+padding-right: 5px;
+overflow: hidden;
+overflow-y: auto;
+}
+#table {
+width:80%;
+
+}
+.optionLabel {
+color: #202020;
+font-size: 11px;
+}
+.hdrLink {
+font-size: 10pt;
+font-weight: normal;
+color: #3b84bc;
+text-decoration: none;
+padding-left: 6px;
+padding-right: 6px;
+}
+a.cmdLink {
+font-size: 10pt;
+font-weight: normal;
+font-variant: small-caps;
+color: #356b8d;
+padding-left: 6px;
+padding-right: 6px;
+}
+</style>
+<!-- Style: %CSP.UI.Portal.GlobalList -->
+<style type="text/css">
+#table {
+width:80%;
+}
+.optionLabel {
+color: #202020;
+font-size: 11px;
+}
+
+
+footer {
+  text-align:center;
+  padding: 5px;
+  background-color: #abbaba;
+  color: #000;
+}
+
+.cadre{
+background: url(cadre-degrade.png) repeat-x left bottom #FFFFFF; /* image de fond */
+border: 1px solid #CACCCD; /* bordure */
+border-radius: 10px; /* bordure arrondie */
+width: 200px; /* largeur */
+text-align: left;
+}
+.cadre span{
+border-bottom: 1px solid #CACCCD; /* bordure du bas */
+font-size: 15px; /* taille du texte */
+margin: 0; /* marges ext */
+padding: 5px 0; /* marges int. */      
+text-align: center; /* alignement du texte */
+display : block; /* permet de prendre toute la place */
+}
+.cadre a{
+display: block; /* affichage block (pleine largeur)
+border-bottom: 1px solid #CACCCD; /* bordure du bas */
+color: #02A3D9; /* couleur du texte */
+padding: 5px; /* marges int. */
+text-decoration: none; /* permet de retirer l'heritage de l'effet souligné des liens */
+}
+.cadre a:hover{
+background: #ffffff; /* couleur de fond */
+}
+.cadre a:last-child{
+border: 0; /* pas de bordure pour le dernier lien */
+}
+.cadre a:hover:last-child{
+border-radius: 0 0 10px 10px; /* arrondie lors du survol pour éviter débordement lors de l'application du hover */
+}
+
+.profil-image {
+  max-width: 150px;
+  height: auto;
+}
+
+.zoom embed{
+	text-align: center;
+	max-width: 300px;
+	max-height: 200px;
+	float: center;
+}
+
+labell {
+  position: relative;
+}
+labe input {
+  font-size: 1em;
+  color: #f9f9f9;
+  background: transparent;
+  padding: 1rem 1rem;
+  width: 350px;
+  border-radius: 5px;
+  border: 2px solid #7a7a7a;
+  transition: all 0.2s;
+}
+labell input:focus {
+  border-color: #ff4754;
+}
+labell .password-icon {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 60%;
+  right: 20px;
+  transform: translateY(-50%);
+  width: 20px;
+  color: #000000;
+  transition: all 0.2s;
+}
+labell .password-icon:hover {
+  cursor: pointer;
+  color: #ff4754;
+}
+
+labell .password-icon .feather-eye-off {
+  display: none;
+}
+
+</style>
+
+]]></CSP>
+
+
+<CSP name="styleCssZengsa.csp" application="/csp/julien/" default="1"><![CDATA[
+<style type="text/css">
+/* YSD3631 Everything below the header remains the same with these exceptions:
+Links change to InterSystems blue: #333695
+Beige background of right column panels change to light gray: #F0F0F0
+*/
+body {
+font-family: "Source Sans Pro",Futura,Arial,sans-serif;
+}
+.arrondi {
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    behavior: url(/PIE.htc);
+}
+legend {
+background: rgb(53,107,141);
+background-image: none;
+background-repeat: repeat-x;
+border-bottom: 1px darkblue solid;
+padding-top: 5px;
+padding-bottom: 1px;
+color: white;
+height:30px;
+vertical-align: baseline;
+}
+
+.fondbleudegrade {
+  background: linear-gradient(#E0F2F7, white);
+}
+.fondvertdegrade {
+  background: linear-gradient(#F5FBEF, white);
+}
+p {
+	pading:0.2em;
+	text-indent:1em;
+}
+.ecart {
+	text-indent:20em;
+}
+.ex1 {
+  margin: auto;
+  background: gold;
+  width: 66%;
+}
+.locatorBarTable th {
+background: rgb(53,107,141);
+background-image: none;
+background-repeat: repeat-x;
+border-bottom: 1px darkblue solid;
+padding-bottom: 1px;
+color: white;
+}
+
+.locatorBarTable td {
+background: rgb(53,107,141);
+background-image: none;
+background-repeat: repeat-x;
+border-bottom: 1px darkblue solid;
+padding-bottom: 1px;
+color: white;
+}
+.locatorBarLinks {
+color: white;
+}
+.locatorBarLinks a {
+color: white;
+}
+.locatorBarLinks a:visited {
+color: white;
+}
+.locatorBarLinks a:hover {
+color: darkred;
+background: #FFFAE7;
+}
+.locatorBarSelect {
+color: white;
+}
+/* style for "Management Portal" */
+.portalName {
+color:#000000;
+font-family: Montserrat,Futura,Arial,sans-serif;
+font-size:18px;
+font-weight: bold;
+text-align:left;
+text-valign: middle;
+position: absolute;
+left: 300px;
+top: 20px;
+}
+.portalPropertyPanelTitle {
+color: white;
+font-size: 12pt;
+padding: 5px;
+}
+.portalPropertyPanelCommands {
+color: white;
+background: rgb(53,107,141);
+width: 100px;
+text-align: center;
+font-size: 9pt;
+border: 1px solid #CBCBCB;
+}
+.portalTitle {
+width: 100%;
+height: 35px;
+position: relative;
+box-shadow:0 2px 8px 0 rgba(0,0,0,0.50);
+/*box-sizing: border-box;*/
+padding: 3px 3px;
+
+}
+.portalTitleFiche {
+width: 100%;
+height: 55px;
+position: relative;
+box-shadow:0 2px 8px 0 rgba(0,0,0,0.50);
+box-sizing: border-box;
+padding: 3px 3px;
+
+}
+
+.portalTitleOrdo {
+width: 100%;
+height: 150px;
+/*box-shadow:0 1px 1px 0 rgba(0,0,0,0.50);*/
+position: relative;
+box-sizing: border-box;
+padding: 3px 3px;
+
+}
+
+.portalTitleInfoBox {
+left: 20px;
+position: absolute;
+top: 70px;
+width: 100%;
+box-shadow:0 2px 8px 4 rgba(0,0,0,0.12);
+}
+.portalTitleInfoLabel {
+font-family: SourceSansPro,Futura,Arial,sans-serif;
+font-size: 14px;
+font-weight: bold;
+color: #000000;
+padding: 2px 2px;
+}
+.portalTitleInfoVal {
+font-family: SourceSansPro,Futura,Arial,sans-serif;
+font-size: 14px;
+font-weight: 400;
+color: #000000;
+padding: 4px 12px 4px 2px;
+}
+.portalTitleInfoValArch {
+font-family: SourceSansPro,Futura,Arial,sans-serif;
+font-size: 14px;
+font-weight: 400;
+color: #ffffff;
+padding: 4px 12px 4px 2px;
+background: rgb(53,107,141);
+}
+
+.portalLostConnectivityWarn {
+font-family: SourceSansPro,Futura,Arial,sans-serif;
+font-size: 13px;
+font-weight: bold;
+letter-spacing: 0.75px;
+text-align: center;
+background: #aa4040;
+color:#ffffff;
+border-radius: 4px;
+padding: 6px 20px;
+margin-left: 20px;
+}
+.portalenteteonco {
+font-family: SourceSansPro,Futura,Arial,sans-serif;
+font-size: 10px;
+font-weight: bold;
+letter-spacing: 0.75px;
+text-align: center;
+background: rgb(53,107,141);
+color:#ffffff;
+border-radius: 4px;
+padding: 6px 20px;
+margin-left: 20px;
+}
+.portalentetezengsa {
+font-family: SourceSansPro,Futura,Arial,sans-serif;
+font-size: 10px;
+font-weight: bold;
+letter-spacing: 0.75px;
+text-align: center;
+background: rgb(53,107,141);
+color:#ffffff;
+border-radius: 4px;
+padding: 6px 20px;
+margin-left: 0px;
+}
+
+/* style to show "Development System" or "Live System", etc. */
+#portalServerFlag {
+float: left;
+}
+.portalTitleServerFlag {
+border: 2px solid #333695;
+border-radius: 4px;
+color: #000000;
+font-family: Montserrat,Futura,Arial,sans-serif;
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.75px;
+padding: 4px 20px;
+}
+.portalTitleServerFlagLive {
+color: #da4848;  /* red */
+border: 2px solid #da4848;
+}
+.portalTitleListBox {
+position: absolute;
+top: 5px;
+left: 20px;
+font-size: 9pt;
+}
+.portalTitleMenuBox {
+position: relative;
+top: 20px;
+left: 600px;
+font-size: 14px;
+}
+/* attemp to make small links and mainMenu not to overlap */
+#portalTitleMenuBox {
+position: absolute;
+left: 50%;
+min-width: 350px;
+}
+#mainMenu {
+position: absolute;
+left: 95%;
+top: 8px;
+}
+@media all and (max-width: 980px) {
+#portalTitleMenuBox {
+margin-left: 0px;
+left: 600px;
+}
+#mainMenu {
+margin-left: 0px;
+left: 1210px;
+}
+}
+.pageTitleText {
+color: #333695;
+font-family: "Source Sans Pro",Futura,Arial,sans-serif;
+font-size: 12px;
+font-weight: 550;
+text-docoration: none;
+}
+.portalTitleLink {
+color: #000000;
+font-family: "Source Sans Pro",Futura,Arial,sans-serif;
+font-size: 14px;
+font-weight: 600;
+padding: 2px;
+text-decoration: none;
+}
+.portalServerLink {
+color: #333695;
+font-family: "Source Sans Pro",Futura,Arial,sans-serif;
+font-size: 12px;
+font-weight: 550;
+text-decoration: underline;
+}
+.portalLocatorLink {
+text-decoration: none;
+}
+.portalTitleLink:hover,.portalServerLink:hover,.portalLocatorLink:hover {
+color: #00A09A;
+transition: color 0.03 ease;
+}
+.portalTitleTabBox {
+position: absolute;
+color: white;
+font-size: 16px;
+bottom: 0px;
+left: 20px;
+width: 300px;
+height: 25px;
+padding-left: 15px;
+padding-right: 15px;
+padding: 5px;
+border-top-right-radius: 5px;
+border-top-left-radius: 5px;
+overflow: hidden;
+}
+.portalLogoBox {
+position: absolute;
+top: 0px;
+padding: 3px;
+padding-bottom: 4px;
+padding-right: 15px;
+left: 10px;
+width:210px;
+z-index: 3;
+}
+.topLine {
+border-top: 2px solid #333695;
+}
+.portalLogo {
+position: relative;
+top: 0px;
+left: 10px;
+padding: 2px;
+padding-left: 5px;
+padding-right: 5px;
+width:210px;
+height:50px;
+font-weight: bold;
+font-size: 12pt;
+}
+/* overrides of Finder styles */
+.finderItemSelected {
+background: #bfe4e3;
+border: 1px solid #cbcbcb;
+color: #000000;
+}
+.finderItemSelected a {
+color: #000000;
+}
+.finderListRowSelected {
+background: #bfe4e3;  /*#2F6280;*/
+}
+.finderItem, .finderItemOdd,.finderItemSelected, .finderItemDisabled {
+border: 1px solid #CBCBCB;
+}
+/* command button styles */
+.commandButton,.commandButtonRemove,.commandButtonDisabled {
+color: #333695;
+cursor: pointer;
+background: #ffffff;
+border: 2px solid #333695;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 600;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+text-transform: uppercase;
+
+}
+.commandButtonRemove {
+background: #E5EFE8;
+color: #333695;
+border: 2px solid #E5EFE8;
+}
+.commandButtonDisabled {
+background: #ffffff;
+color: #979797;
+cursor: default;
+border: 2px solid #c5c5c5;
+}
+.commandButton:hover {
+border: 2px solid #00A09A;
+color: #00A09A;
+/*transition: color 0.03 ease;*/
+}
+.commandButtonRemove:hover {
+border: 2px solid white;
+}
+.commandButtonPetit {
+color: #000000;
+cursor: pointer;
+background: #ECE0F8;
+border: 2px solid #A9D8D8;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.55px;
+text-align: center;
+text-decoration: none;
+padding: 3px 5px;
+}
+.commandButtonPetit:hover {
+border: 2px solid #04AB20;
+color: #ffffff;
+/*transition: color 0.03 ease;*/
+background: #04AB20;
+}
+.commandButtonPetitJaune {
+color: #000000;
+cursor: pointer;
+background: #ffffc0;
+border: 2px solid #A9D8D8;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.55px;
+text-align: center;
+text-decoration: none;
+padding: 3px 5px;
+}
+.commandButtonPetitJaune:hover {
+border: 2px solid #04AB20;
+color: #ffffff;
+/*transition: color 0.03 ease;*/
+background: #04AB20;
+}
+.commandButtonGestionLit {
+color: #000000;
+cursor: pointer;
+background: #ffffc0;
+border: 2px solid #A9D8D8;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.55px;
+text-align: left;
+text-decoration: none;
+padding: 3px 5px;
+width:200px;
+}
+.commandButtonGestionLit:hover {
+border: 2px solid #04AB20;
+color: #ffffff;
+/*transition: color 0.03 ease;*/
+background: #04AB20;
+}
+
+.commandButtonImg {
+color: #333695;
+cursor: pointer;
+background: #ffffff;
+border: 0px ;
+border-radius: 4px;
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.75px;
+text-align: left;
+text-decoration: none;
+padding: 4px 10px;
+}
+.commandButtonLigne {
+color: #333695;
+cursor: pointer;
+background: #ffffff;
+border: 0px ;
+border-radius: 4px;
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.75px;
+text-align: left;
+text-decoration: none;
+/*padding: 4px 10px;*/
+}
+
+.commandText,.commandTextRemove,.commandTextnDisabled {
+color: #333695;
+cursor: pointer;
+background: #ffffff;
+border: 1px solid #333695;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 600;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+}
+.commandTextObs {
+color: #333695;
+cursor: pointer;
+background: #ffffff;
+border: 1px solid #333695;
+border-radius: 4px;
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+height: 50px;
+
+}
+.commandTextObsSelect {
+color: #333695;
+cursor: pointer;
+background: #ffffff;
+border: 1px solid #333695;
+border-radius: 4px;
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.75px;
+text-align: left;
+text-decoration: none;
+padding: 0px 0px;
+height: 25px;
+width:100%;
+
+}
+
+.commandTextHeure {
+color: #333695;
+cursor: pointer;
+background: #ffffff;
+border: 1px solid #333695;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 600;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+height: 20px;
+}
+
+.commandTextLib {
+color: #333695;
+cursor: pointer;
+background: #ffffff;
+border: 1px solid #333695;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+width:200px;
+}
+.commandTextOrdo {
+color: #78B8B8;
+cursor: pointer;
+background: #ffffff;
+border: 1px solid #78B8B8;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 600;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+width:200px;
+}
+.commandTextOrdo3 {
+color: #78B8B8;
+background: #ffffff;
+border: 1px solid #78B8B8;
+border-radius: 4px;
+font-size: 12px;
+font-weight: 700;
+letter-spacing: 0.55px;
+text-align: center;
+text-decoration: none;
+padding: 4px 10px;
+width:97%;
+border-right-style: none;
+border-left-style: none;
+border-top-color: #3E8383;
+border-bottom-color: #3E8383;
+
+}
+.commandTextOrdo4 {
+color: #000000;
+background: #ffffff;
+font-size: 12px;
+font-weight: 700;
+letter-spacing: 0.55px;
+text-align: left;
+text-decoration: none;
+padding: 4px 10px;
+width:97%;
+height:24%
+}
+.commandTextOrdo2 {
+color: #78B8B8;
+cursor: pointer;
+background: #ffffff;
+border: 1px solid #78B8B8;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 600;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+width:400px;
+}
+
+
+.commandTextLong {
+color: #333695;
+cursor: pointer;
+background: #ffffff;
+border: 1px solid #333695;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+width:400px;
+}
+.inputLong
+{
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: center;
+text-decoration: none;
+padding: 4px 20px;
+width:400px;
+}
+.inputLongLeft
+{
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+text-decoration: none;
+padding: 4px 20px;
+width:400px;
+autocomplete:off;
+text-transform: uppercase;
+}
+.inputTresLongLeft
+{
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+text-decoration: none;
+padding: 4px 20px;
+width:600px;
+autocomplete:off;
+text-transform: uppercase;
+}
+
+.inputPetitLeft
+{
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+text-decoration: none;
+padding: 4px 20px;
+width:120px;
+autocomplete:off;
+}
+
+img {
+border: none;
+}
+.fontText {
+	font-size: 15px;
+	font-weight: 500;
+	letter-spacing: 0.75px;
+	color: #333695;
+	text-decoration: underline;
+}
+.fontTextTableau {
+	font-size: 15px;
+	font-weight: 600;
+	letter-spacing: 0.85px;
+	color: #333695;
+}
+.fontTextLigne {
+	font-size: 10px;
+	font-weight: 400;
+	letter-spacing: 0.85px;
+	color: #333695;
+}
+
+/* overrides of tablePane */
+table.tpTable {
+font-size: 12px;
+border: 2px solid #F1F0E7;
+padding: 2px;
+width:100%;
+}
+/* @doc="Column header." */
+table.tpTable th {
+color: #3b84bc;
+border: none;
+background: white;
+font-weight: bold;
+text-align: left;
+padding: 2px;
+overflow: hidden;
+}
+/* @doc="Selected column header." */
+table.tpTable th.tpHdrSelected {
+color: #3b84bc;
+background: white;
+}
+table.tpTable td {
+border: none;
+padding: 2px;
+overflow: hidden;
+}
+table.tpTable tr.tpSelected td {
+font-weight: normal;
+border: none;
+padding-top: 2px;
+padding-bottom: 2px;
+}
+table.tpTable tr.tpSelected {
+color: black;
+border: none;
+background: #F3E799;
+background-image: none;
+}
+
+.textareaLong {
+	font-size:1.1em;
+    letter-spacing: 1px;
+    padding: 10px;
+    line-height: 1.5;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #999;
+    background: #F0F1E8;
+    font-weight:600;
+}
+
+/* @doc="Style for rows when not using zebra styling." */
+.tpRow {
+color: black;
+background: white;
+}
+/* @doc="Style for odd-rows when using zebra styling." */
+.tpOdd {
+color: black;
+background: #F0F0F0;
+}
+/* @doc="Style for even-rows when using zebra styling." */
+.tpEven {
+color: black;
+background: white;
+}
+/* @doc="Cell containing a link." */
+.tpAction {
+font-size: 0.9em;
+}
+.tpAction a {
+white-space: nowrap;
+color: #3b84bc;
+}
+.tpAction a:hover {
+color: #98923a;
+}
+.tpAction a:link {
+color: #3b84bc;
+}
+.tpAction a:active {
+color: #3b84bc;
+}
+/* @doc="Table around navigator bar." */
+.tnbrTable {
+background: #F3F7FA;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-transform: uppercase;
+}
+
+.tnbrTableTitre {
+background: #F3F7FA;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 10px;
+text-transform: uppercase;
+height:25px;
+text-valign:middle;
+}
+
+.tnbrTablePetit {
+background: #DBE0E6;
+border: 1px solid #F1F0E7;
+border-radius:3px;
+padding: 1px;
+width:40px;
+text-align:right;
+}
+.tnbrTableDate {
+background: #F3F7FA;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+}
+.tnbrTablelig1 {
+background: #F3F7FA;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+height:40px
+}
+/*tr:hover {
+	background: #0F22D8;
+	color:#ffffff;
+}*/
+.tnbrTablelig1imp {
+background: #F3F7FA;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+height:10px
+}
+.tnbrTablelig2imp {
+background: #FFFFFF;
+border: 1px solid #FFFFFF;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+height:10px
+
+}
+
+.tdcolor:hover {
+	background: #E2EDF1;  /*#0F22D8;*/
+	color:#0F22D8;  /*#ffffff;*/
+}
+
+.tnbrTableligaccepter {
+background: #97D3D0;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+height:40px
+}
+.tnbrTableligproche {
+background: #DEFBE6;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+height:40px
+}
+
+.tnbrTableligcodeerreur {
+background: #FA5858;
+color:#ffffff;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+height:40px
+}
+.tnbrTableligcontredelai {
+background: #066b32;
+color:#ffffff;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+height:40px
+}
+
+.tnbrTableligrecherche {
+background: #d4e4fc;
+height:40px
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.75px;
+height:40px
+text-align: left;
+}
+.tnbrTableligaccepter {
+background: #97D3D0;
+height:40px
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.75px;
+height:40px
+text-align: left;
+}
+
+/*.tnbrTableligaccepter {
+background: #97D3D0;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+height:40px
+}*/
+
+.tnbrTableligannul {
+background: #bdbdbd;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+height:40px
+}
+.tnbrTablelignoninscrit {
+background: #fcf0d6;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+height:40px
+}
+.tnbrTableligaverifier {
+background: #F5A9A9;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+height:40px
+}
+.tnbrTableligterminee {
+background: #D8D8D8;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+height:40px
+}
+
+.tnbrTableligexamen {
+background: #f8fc05;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+height:40px
+}
+
+.tnbrTablelig2 {
+background: #FFFFFF;
+border: 1px solid #FFFFFF;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+height:40px
+
+}
+.tnbrTablelig3 {
+background: #B9FAC5;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.75px;
+text-align: left;
+height:40px
+
+}
+.tnbrTablelig4 {
+background: #061199;
+color:#ffffff;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.75px;
+height:40px
+
+}
+.tnbrTablelig5 {
+background: #FC5E22;
+color:#ffffff;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.75px;
+height:40px
+
+}
+.tnbrTablelig6 {
+background: #F68C0D;
+color:#ffffff;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: center;
+cursor:pointer;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.75px;
+height:40px
+}
+
+.tnbrTablePetit {
+background: #DBE0E6;
+border: 1px solid #F1F0E7;
+border-radius:3px;
+padding: 1px;
+width:40px;
+text-align:right;
+}
+.tnbrTableInfoComplementaire td {
+background: #F3F7FA;
+border: 1px solid #0B4674;
+border-radius:3px;
+padding: 1px;
+text-align: left;
+cursor:pointer;
+font-size:10px;
+font-weight:600;
+letter-spacing:0.75px;
+color:#333695;
+padding-left: 5px;
+vertical-align: middle;
+}
+
+/* @doc="Buttons within navigator bar." */
+.tnbrPagingButtons {
+border: 1px solid #B0B0B0;
+}
+.tnbrFilter {
+color: #404040;
+}
+.tnbrFilter input {
+border: 1px solid #B0B0B0;
+padding-left: 2px;
+}
+/* @doc="Row count indicator." */
+.tnbrFound {
+color: #404040;
+}
+/* combo boxes and dateText */
+.comboboxInput {
+border-top: 1px solid #cbcbcb;
+border-bottom: 1px solid #cbcbcb;
+border-left: 1px solid #cbcbcb;
+border-right: none;
+}
+.comboboxDropDown {
+border: 1px solid #cbcbcb;
+}
+.comboboxImgButton {
+border-top: 1px solid #cbcbcb;
+border-bottom: 1px solid #cbcbcb;
+border-left: none;
+border-right: 1px solid #cbcbcb;
+}
+.comboboxTextButton {
+border: 1px solid #cbcbcb;
+}
+/* override the default green/blue color with ISC blue */
+.modalGroup.modalGroupDialog {
+background: #333695;
+}
+.modalGroupTitle {
+border-bottom: 1px #333695 solid;
+}
+.modalGroupTitle td {
+color: #333695;
+}
+/* the effect of the following is to not show text in the top edge in modal dialog */
+.modalGroupIframe {
+background: #333695;
+}
+</style>
+<!-- Style: %CSP.UI.Portal.Application -->
+
+]]></CSP>
+
+
+<CSP name="supprimer.csp" application="/csp/julien/" default="1"><![CDATA[
+<html>
+
+<head>
+
+<!-- Put your page Title here -->
+<title>	Site test & découverte IRIS </title>
+<csp:include page="StyleCssNew.csp">
+</head>
+
+<script language="cache" runat="server">
+set commandButtonR="commandButton"
+</script>
+
+<body>
+
+		<!-- Put your page code here -->
+
+      
+<!-- This function is needed by the search button on the form -->
+<script language='javascript'>
+<!--
+function update(id)
+{
+     #server(..formLoad(id))#;
+     return true;
+}
+function pre_form_save()
+{
+	form_save();
+	window.location.reload();
+}
+// -->
+</script>
+<script language="cache" runat="server">
+set couleur = ""
+set OBJID=%request.Get("OBJID")
+if OBJID'="" {
+set couleur=$lg(^classeJulien.identiterD(OBJID),9)
+}
+</script>
+<!-- set the domain so error messages could be properly localized -->
+<csp:class DOMAIN='%CSPBind'>
+
+<!-- use CSP:OBJECT tag to create a reference to an instance of the class -->
+<csp:object name='objForm' classname='classeJulien.identiter' OBJID='#(%request.Get("OBJID"))#'>
+
+<!-- use csp:search tag to create a javascript function to invoke a search page --> 
+<csp:search name='form_search' classname='classeJulien.identiter' where='%Id()' options='popup,nopredicates' onselect='update'>
+
+<form name='form' cspbind='objForm' cspjs='All' onsubmit='return form_validate();'>
+<center>
+<table class="tnbrTable">
+	<tr class="finderItemSelected"><td colspan=2 align="center"><b>Supprimer / Modifier</b></td></tr>
+	<tr class>
+		<td class="#(couleur)#"><b><div align='left'>Nom De Famille:</div></b></td>
+		<td><input placeholder="Dupont" type='text' name='nom' cspbind='nom' size='50'></td>
+	</tr>
+	<tr class="finderItemSelected">
+		<td class="finderItemSelected"><b><div align='left'>Prénom:</div></b></td>
+		<td><input placeholder="Benjamin" type='text' name='prenom' cspbind='prenom' size='50'></td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='left'>Date De Naissance:</div></b></td>
+		<td><input placeholder="11/01/2023" type='text' name='dateDeNaissance' cspbind='dateDeNaissance' size='50'></td>
+	</tr>
+	
+	<tr class="finderItemSelected">
+		<td class="finderItemSelected"><b><div align='left'>Sexe:</div></b></td>
+		<td><select name='sexe' cspbind='sexe'>
+		  <option value=''>Selectionner</option>
+		  <option value='Masculin'>Masculin</option>
+		  <option value='Feminin'>Feminin</option>
+		</select></td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='left'>Adresse:</div></b></td>
+		<td><input placeholder="adresse membre" type='text' name='adresse' cspbind='adresse' size='50'></td>
+	</tr>
+	<tr class="finderItemSelected">
+		<td class="finderItemSelected"><b><div align='left'>Mail:</div></b></td>
+		<td><input type='text' name='mail' cspbind='mail' size='50' placeholder="votre-email@site.com"></td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='left'>Téléphone:</div></b></td>
+		<td><input placeholder="numéro mobile" type='text' name='telephone' cspbind='telephone' size='50'></td>
+	</tr>
+	<tr class="finderItemSelected">
+		<td class="finderItemSelected"><b><div align='left'>Numéro de Licence:</div></b></td>
+		<td><input placeholder="numéro licence" type='text' name='numLicence' cspbind='numLicence' size='50'></td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='left'>Type De Licence:</div></b></td>
+		<td><select name='typeLicence' cspbind='typeLicence'>
+		  <option value=''>Selectionner</option>
+		  <option value='benevole'>Bénévole</option>
+		  <option value='3 mois'>3 mois</option>
+		  <option value='1 an loisirs'>1 an loisirs</option>
+		  <option value='1 an competition'>1 an compétition</option>
+		</select></td>
+	</tr>
+	<tr class="finderItemSelected">
+		<td class="finderItemSelected"><b><div align='left'>Niveau:</div></b></td>
+		<td><select name='pagaieCouleur' cspbind='pagaieCouleur'>
+		  <option value=''>Selectionner</option>
+		  <option value='X'>X</option>
+		  <option value='Blanche'>Pagaie Blanche</option>
+		  <option value='Jaune' class="Jaune">Pagaie Jaune</option>
+		  <option value='Vert' class="Vert">Pagaie Verte</option>
+		  <option value='Bleue' class="Bleue">Pagaie Bleue</option>
+		  <option value='Rouge' class="Rouge">Pagaie Rouge</option>
+		  <option value='Noir' class="Noir">Pagaie Noir</option>
+		</select></td>
+	</tr>
+	<tr>
+		<td class="#(couleur)#"><b><div align='left'>Diplôme:</div></b></td>
+		<td><select name='diplome' cspbind='diplome'>
+		  <option value=''>Selectionner</option>
+		  <option value='X'>X</option>
+		  <option value='Initiateur'>Initiateur</option>
+		  <option value='Moniteur'>Moniteur</option>
+		  <option value='CQP'>CQP</option>
+		  <option value='BPJEPS'>BPJEPS</option>
+		</select></td>
+	</tr>
+	<tr class="finderItemSelected">
+		<td class="finderItemSelected"><b><div align='left'>Membre du CA:</div></b></td>
+		<td><select name='CA' cspbind='CA'>
+		  <option value=''>Selectionner</option>
+		  <option value='Oui'>Oui</option>
+		  <option value='Non'>Non</option>
+		</select></td>
+	</tr>
+		<tr>
+		<td class="#(couleur)#"><b><div align='left'>Membre actif:</div></b></td>
+		<td><select name='actif' cspbind='actif'>
+		  <option value=''>Selectionner</option>
+		  <option value='oui'>Oui</option>
+		  <option value='non'>Non</option>
+		</select></td>
+	</tr>
+
+	</table>
+	<br>
+	<input class="#(commandButtonR)#" type='button' name='btnSave' value='Enregistrer Les Modifications' onclick='pre_form_save();'>
+</form>
+
+<center>
+<h1 align='center' id="TotalMembres">Quel membre souhaitez-vous SUPPRIMER ou MODIFIER ?</h1>
+
+		<csp:query name="query" classname="classeJulien.identiter" queryname="ParSup">
+<table class="portalTitleServerArchive">
+	<tr class="finderItemSelected">
+	<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+		<th align=left><b>#(query.GetColumnHeader(queryCol))#</b></th>
+	</csp:while>
+	</tr>
+	<script language="cache" runat="server">
+		set nolig=0
+	</script>
+	<csp:while counter=queryRow condition=query.Next()>
+	<script language="cache" runat="server">
+	;set couleur=$lg(^classeJulien.identiterD(query.GetData(1)),9)
+	set nolig=nolig+1
+	set class=$SELECT(nolig#2=0:"tnbrTablelig1",1:"tnbrTablelig2")
+	</script>
+	<tr class="#(class)#" onClick="ouvreFiche('#(query.GetData(1))#')">
+		<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+			<td title="Modifier">#($ZCONVERT(query.GetData(queryCol),"U"))#</td>
+		</csp:while>
+	</tr>
+	</csp:while>
+</table>
+
+<h1 align='center' id="TotalMembres">Voici les anciens membres du club:</h1>
+
+		<csp:query name="query" classname="classeJulien.identiter" queryname="ParNonActif">
+<table class="portalTitleServerArchive">
+	<tr class="finderItemSelected">
+	<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+		<th align=left><b>#(query.GetColumnHeader(queryCol))#</b></th>
+	</csp:while>
+	</tr>
+	<script language="cache" runat="server">
+		set nolig=0
+	</script>
+	<csp:while counter=queryRow condition=query.Next()>
+	<script language="cache" runat="server">
+	;set couleur=$lg(^classeJulien.identiterD(query.GetData(1)),9)
+	set nolig=nolig+1
+	set class=$SELECT(nolig#2=0:"tnbrTablelig1",1:"tnbrTablelig2")
+	</script>
+	<tr class="#(class)#" onClick="ouvreFiche('#(query.GetData(1))#')">
+		<csp:while counter=queryCol condition="(queryCol<query.GetColumnCount())">
+			<td title="Modifier">#($ZCONVERT(query.GetData(queryCol),"U"))#</td>
+		</csp:while>
+	</tr>
+	</csp:while>
+</table>
+
+</body>
+
+<script language=javascript>
+function ouvreFiche(value)
+{
+	window.location="supprimer.csp?OBJID="+value;
+	
+}
+function sup(OBJID)
+{
+	if (confirm("suppression de ID "+OBJID)){
+		#server(..supid(OBJID))#;
+	}
+	window.location="EnTeteKWC.csp?menu=1&ouvrepage=supprimer.csp";
+}
+</script>
+
+</html>
+]]></CSP>
+
+
+<CSP name="zenPhoto.csp" application="/csp/julien/" default="1"><![CDATA[
+<html>
+<head>
+
+<!--<link rel="stylesheet" href="./includes/style-main-02.css" type="text/css" />-->
+<title>Import Photo Profil</title>
+<link rel="icon" type="image/png" href="ig/logo.png" />
+<csp:include page="StyleCssNew.csp">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--<csp:include page="footStyleCss.csp">-->
+
+</head>
+
+<script language="cache" runat="server">
+set commandButtonR="commandButton"
+</script>
+
+<script language="cache" runat="server">
+S OBJID= $G(%session.Data("OBJID")),libelleuser=""
+I OBJID'="" {
+S idPhoto=$P($G(^zenPhoto("idPhoto",OBJID)),"~",1)
+}
+set ^toto(1)=OBJID_"\"_idPhoto
+</script>
+<BODY>
+<center>
+<table class="main-table-fiche">
+<caption><b><h1>PHOTO DE PROFIL : #($ZCONVERT($G(libelleuser),"U"))#</h1></caption>
+<form enctype="multipart/form-data" method=post action="zenPhoto.csp">
+<center>
+<tr class="champEnteteColonne" align="center">
+<td>Enregistrement d'une Nouvelle Photo</td>
+</tr>
+<p>
+<tr>
+<td>Adresse du fichier:
+<input  type="file" size="80" class="#(commandButtonR)#" name="FileStream">
+&nbsp;&nbsp;</td>
+</tr><tr>
+<td align="center">
+<input type=submit class="#(commandButtonR)#" value="Enregistrer">
+<input type=HIDDEN name="PID" value=#(%request.Get("PID"))#></td>
+<input type=HIDDEN name="idFiche" value=#($G(%session.Data("OBJID")))#>
+<csp:IF CONDITION=(%request.IsDefinedMimeData("FileStream"))>
+	<server>
+		New type,store,filename,filedata
+		Set store=##class(Test.FileHolder).%New(),done=0
+		set filename=%request.GetMimeData("FileStream").FileName
+   		set type=%request.GetMimeData("FileStream").ContentType
+		if (filename["\") {
+			set len=$L(filename,"\")
+			set name=$P(filename,"\",len)
+			set done=1
+			}
+		if (filename["/") {
+			set len=$L(filename,"/")
+			set name=$P(filename,"/",len)
+			set done=1
+			}
+
+		if 'done {
+			set name=filename
+			}
+    s store.FileName = name
+    s store.ContentType = type
+    set filedata = store.FileData.CopyFromAndSave(%request.GetMimeData("FileStream"))
+			 		
+		I filename'="" {
+		s ssc = store.%Save(),csc = store.%Close()
+		S idPhoto=store.%Id()
+		D ..enrg(idPhoto,$G(%session.Data("OBJID")))
+		
+		}
+	</server>
+  <script language="javascript">
+  	window.opener.location.reload();
+	window.close();
+</script>
+<csp:else>
+
+  </csp:IF>
+  
+<p>
+</table>
+</form>
+</table>
+<script language="cache" method="enrg" arguments="idPhoto,OBJID">
+		set ^toto=idPhoto_"\"_OBJID_"\"_idPhoto_"~"_$H_"~"_filename
+I OBJID'="" {
+	S ^zenPhoto("idPhoto",OBJID)=idPhoto_"~"_$H_"~"_filename
+	S ^ImportzenPhoto(OBJID)=$H
+}
+</script>
+<p><center>
+<table class="main-table-fiche">
+<caption><b>PHOTO ACTUELLE : #($ZCONVERT($G(libelleuser),"U"))#</caption>
+		<tr>
+			<td>
+				<csp:if condition=$G(idPhoto)'="">
+					<csp:if condition=$G(^Test.FileHolderD(idPhoto))'="">
+					<div class="zoom">
+					<embed src="Test.GetFileG.cls?OBJID=#(idPhoto)#"></embed>
+					</div>
+					</csp:if>
+				</csp:if>
+			</td>
+		</tr>
+		<tr>
+			<td align="center"><a class="#(commandButtonR)#" href=# onClick="supPhoto('#($G(idPhoto))#','#(OBJID)#')">Suppression</a></td>
+		</tr>
+</table>
+</center>
+
+<p>
+<table border=1 bgcolor="#FFE0C0">
+</table>
+<p>
+<script language="javascript">
+function supPhoto(idPhoto,OBJID)
+{
+	
+	if (confirm('Suppression de la Photo'))
+	{
+	
+	#server(..supfiche(idPhoto,OBJID))#
+	window.opener.location.reload();
+	window.close();
+	}
+}
+</script>
+<script language="cache" method="supfiche" arguments="idPhoto,OBJID"> 
+;S dolh=$P(^ImageRef("id",cb),"~",2)
+K ^zenPhoto("idPhoto",OBJID)
+I $D(^Test.FileHolderS(idPhoto)) {
+	K ^Test.FileHolderD(idPhoto)
+	S nb=^Test.FileHolderS(idPhoto)
+	F i=1:1:nb {
+		K ^Test.FileHolderS(idPhoto,i)
+	}
+	K ^Test.FileHolderS(idPhoto,0)
+	K ^Test.FileHolderS(idPhoto)
+}
+</script>
+</div>
+</body>
+</html>
+
+</html>
+]]></CSP>
+
+
+<CSP name="zenPhotoInterne.csp" application="/csp/julien/" default="1"><![CDATA[
+<html>
+<head>
+
+<!--<link rel="stylesheet" href="./includes/style-main-02.css" type="text/css" />-->
+<title>Import photo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!--<csp:include page="footStyleCss.csp">-->
+
+</head>
+
+<script language="cache" runat="server">
+S idFiche=%request.Get("idFiche"),libelleuser=""
+S periode=$P(%session.Data("selectmois"),"\",1)_$P(%session.Data("selectmois"),"\",2)
+I idFiche'="" {
+S libelleuser=""  
+S idPhoto=$P($G(^zenPhotoInterne(periode,"idPhoto",idFiche)),"~",1)
+}
+</script>
+<BODY>
+<center>
+<table class="main-table-fiche">
+<caption><b>PHOTO IDENTITE : #($ZCONVERT($G(libelleuser),"U"))#</caption>
+<form enctype="multipart/form-data" method=post action="zenPhotoInterne.csp">
+<center>
+<tr class="champEnteteColonne" align="center">
+<td>Enregistrement d'une Nouvelle Photo</td>
+</tr>
+<p>
+<tr>
+<td>Adresse du fichier:
+<input type="file" size="80" class="champRechercheButton" name="FileStream">
+&nbsp;&nbsp;</td>
+</tr><tr>
+<td align="center">
+<input type=submit class="champRechercheButton" value="Enregistrer">
+<input type=HIDDEN name="PID" value=#(%request.Get("PID"))#></td>
+<input type=HIDDEN name="idFiche" value=#(%request.Get("idFiche"))#>
+<csp:IF CONDITION=(%request.IsDefinedMimeData("FileStream"))>
+	<server>
+		New type,store,filename,filedata
+		Set store=##class(Test.FileHolder).%New(),done=0
+		;s ^totostore=store
+		set filename=%request.GetMimeData("FileStream").FileName
+   		set type=%request.GetMimeData("FileStream").ContentType
+		if (filename["\") {
+			set len=$L(filename,"\")
+			set name=$P(filename,"\",len)
+			set done=1
+			}
+		if (filename["/") {
+			set len=$L(filename,"/")
+			set name=$P(filename,"/",len)
+			set done=1
+			}
+
+		if 'done {
+			set name=filename
+			}
+    s store.FileName = name
+    s store.ContentType = type
+    set filedata = store.FileData.CopyFromAndSave(%request.GetMimeData("FileStream"))
+			 		
+		I filename'="" {
+		s ssc = store.%Save(),csc = store.%Close()
+		S idPhoto=store.%Id()
+		D ..enrg(idPhoto,%request.Get("idFiche"),periode)
+		}
+	</server>
+  <script language="javascript">
+  	window.opener.location.reload();
+	window.close();
+</script>
+<csp:else>
+
+  </csp:IF>
+  
+<p>
+</table>
+</form>
+</table>
+<script language="cache" method="enrg" arguments="idPhoto,idFiche,periode">
+;&js<alert(#(idFiche)#)>
+I idFiche'="" {
+	S ^zenPhotoInterne(periode,"idPhoto",idFiche)=idPhoto_"~"_$H_"~"_filename
+	S ^ImportzenPhotoInterne(idFiche)=$H
+}
+</script>
+<p><center>
+<table class="main-table-fiche">
+<caption><b>PHOTO ACTUELLE : #($ZCONVERT($G(libelleuser),"U"))#</caption>
+		<tr>
+			<td>
+				<csp:if condition=$G(idPhoto)'="">
+					<csp:if condition=$G(^Test.FileHolderD(idPhoto))'="">
+					<div class="zoom">
+					<embed src="Test.GetFileG.cls?OBJID=#(idPhoto)#"></embed>
+					</div>
+					</csp:if>
+				</csp:if>
+			</td>
+		</tr>
+		<tr>
+			<td align="center"><a href=# onClick="supSignature('#($G(idPhoto))#','#(idFiche)#','#(periode)#')">Suppression</a></td>
+		</tr>
+</table>
+</center>
+
+<p>
+<table border=1 bgcolor="#FFE0C0">
+</table>
+<p>
+<script language="javascript">
+function supSignature(idPhoto,idFiche,periode)
+{
+	
+	if (confirm('Suppression de la Photo'))
+	{
+	
+	#server(..supfiche(idPhoto,idFiche,periode))#
+	window.opener.location.reload();
+	window.close();
+	}
+}
+</script>
+<script language="cache" method="supfiche" arguments="idPhoto,idFiche,periode"> 
+;S dolh=$P(^ImageRef("id",cb),"~",2)
+K ^zenPhotoInterne(periode,"idPhoto",idFiche)
+I $D(^Test.FileHolderS(idPhoto)) {
+	K ^Test.FileHolderD(idPhoto)
+	S nb=^Test.FileHolderS(idPhoto)
+	F i=1:1:nb {
+		K ^Test.FileHolderS(idPhoto,i)
+	}
+	K ^Test.FileHolderS(idPhoto,0)
+	K ^Test.FileHolderS(idPhoto)
+}
+</script>
+</div>
+</body>
+</html>
+
+</html>
+]]></CSP>
+
+
+<Project name="kwc" LastModified="2023-06-22 16:40:58.254211">
+  <Items>
+    <ProjectItem name="classeJulien.couleurTitrePG" type="CLS"></ProjectItem>
+    <ProjectItem name="classeJulien.identiter" type="CLS"></ProjectItem>
+    <ProjectItem name="classeJulien.utilisateur" type="CLS"></ProjectItem>
+    <ProjectItem name="csp/julien/CouleurPG.csp" type="CSP"></ProjectItem>
+    <ProjectItem name="csp/julien/DocImportant.csp" type="CSP"></ProjectItem>
+    <ProjectItem name="csp/julien/EnTeteKWC.csp" type="CSP"></ProjectItem>
+    <ProjectItem name="csp/julien/autre.csp" type="CSP"></ProjectItem>
+    <ProjectItem name="csp/julien/codeUtilisateur.csp" type="CSP"></ProjectItem>
+    <ProjectItem name="csp/julien/ficheidentiter.csp" type="CSP"></ProjectItem>
+    <ProjectItem name="csp/julien/identiter.CSP" type="CSP"></ProjectItem>
+    <ProjectItem name="csp/julien/index.csp" type="CSP"></ProjectItem>
+    <ProjectItem name="csp/julien/listCA.csp" type="CSP"></ProjectItem>
+    <ProjectItem name="csp/julien/listDiplomer.csp" type="CSP"></ProjectItem>
+    <ProjectItem name="csp/julien/listMembre.csp" type="CSP"></ProjectItem>
+    <ProjectItem name="csp/julien/listPG.csp" type="CSP"></ProjectItem>
+    <ProjectItem name="csp/julien/listPGEric.csp" type="CSP"></ProjectItem>
+    <ProjectItem name="csp/julien/listutilisateur.csp" type="CSP"></ProjectItem>
+    <ProjectItem name="csp/julien/popupinfo.csp" type="CSP"></ProjectItem>
+    <ProjectItem name="csp/julien/recherche.csp" type="CSP"></ProjectItem>
+    <ProjectItem name="csp/julien/styleCSS.csp" type="CSP"></ProjectItem>
+    <ProjectItem name="csp/julien/styleCssMenu.csp" type="CSP"></ProjectItem>
+    <ProjectItem name="csp/julien/styleCssNew.csp" type="CSP"></ProjectItem>
+    <ProjectItem name="csp/julien/styleCssZengsa.csp" type="CSP"></ProjectItem>
+    <ProjectItem name="csp/julien/supprimer.csp" type="CSP"></ProjectItem>
+    <ProjectItem name="csp/julien/zenPhoto.csp" type="CSP"></ProjectItem>
+    <ProjectItem name="csp/julien/zenPhotoInterne.csp" type="CSP"></ProjectItem>
+  </Items>
+</Project>
+</Export>
